@@ -2,12 +2,19 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Ribbon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const linkBase = 'transition-colors';
+  const linkActive = 'text-[#00B74F] font-medium';
+  const linkInactive = 'text-gray-700 hover:text-[#00B74F]';
+  const navLinkClass = (path: string) => `${linkBase} ${pathname === path ? linkActive : linkInactive}`;
 
   return (
     <>
@@ -17,12 +24,15 @@ export default function Navigation() {
             <Image src="/logo-horizontal-preto.png" alt="ASC Logo" width={280} height={280} className="object-contain" />
           </Link>
 
-          <div className="hidden md:flex gap-8">
-            <Link href="/" className="text-gray-700 hover:text-[#00B74F] transition-colors">Início</Link>
-            <Link href="/sobre" className="text-gray-700 hover:text-[#00B74F] transition-colors">Sobre</Link>
-            <Link href="/servicos" className="text-gray-700 hover:text-[#00B74F] transition-colors">Serviços</Link>
-            <Link href="/clientes" className="text-gray-700 hover:text-[#00B74F] transition-colors">Clientes</Link>
-            <Link href="/contato" className="text-gray-700 hover:text-[#00B74F] transition-colors">Contato</Link>
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="/" className={navLinkClass('/')}>Início</Link>
+            <Link href="/sobre" className={navLinkClass('/sobre')}>Sobre</Link>
+            <Link href="/servicos" className={navLinkClass('/servicos')}>Serviços</Link>
+            <Link href="/clientes" className={navLinkClass('/clientes')}>Clientes</Link>
+            <Link href="/contato" className={navLinkClass('/contato')}>Contato</Link>
+            <span className="inline-flex items-center rounded-full bg-pink-100 px-2.5 py-1 text-xs font-semibold text-pink-600">
+              <Ribbon className="mr-1 h-4 w-4 text-pink-500" /> Outubro Rosa
+            </span>
           </div>
 
           <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -37,29 +47,18 @@ export default function Navigation() {
             className="md:hidden bg-white border-t"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              <Link href="/" className="text-gray-700 hover:text-[#00B74F] transition-colors" onClick={() => setIsMenuOpen(false)}>Início</Link>
-              <Link href="/sobre" className="text-gray-700 hover:text-[#00B74F] transition-colors" onClick={() => setIsMenuOpen(false)}>Sobre</Link>
-              <Link href="/servicos" className="text-gray-700 hover:text-[#00B74F] transition-colors" onClick={() => setIsMenuOpen(false)}>Serviços</Link>
-              <Link href="/clientes" className="text-gray-700 hover:text-[#00B74F] transition-colors" onClick={() => setIsMenuOpen(false)}>Clientes</Link>
-              <Link href="/contato" className="text-gray-700 hover:text-[#00B74F] transition-colors" onClick={() => setIsMenuOpen(false)}>Contato</Link>
+              <Link href="/" className={navLinkClass('/')} onClick={() => setIsMenuOpen(false)}>Início</Link>
+              <Link href="/sobre" className={navLinkClass('/sobre')} onClick={() => setIsMenuOpen(false)}>Sobre</Link>
+              <Link href="/servicos" className={navLinkClass('/servicos')} onClick={() => setIsMenuOpen(false)}>Serviços</Link>
+              <Link href="/clientes" className={navLinkClass('/clientes')} onClick={() => setIsMenuOpen(false)}>Clientes</Link>
+              <Link href="/contato" className={navLinkClass('/contato')} onClick={() => setIsMenuOpen(false)}>Contato</Link>
+              <span className="mt-2 inline-flex w-fit items-center rounded-full bg-pink-100 px-2.5 py-1 text-xs font-semibold text-pink-600">
+                <Ribbon className="mr-1 h-3.5 w-3.5 text-pink-500" /> Outubro Rosa
+              </span>
             </div>
           </motion.div>
         )}
       </header>
-
-      <motion.a
-        href="https://wa.me/5551980111096"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 1 }}
-      >
-        <Phone className="w-6 h-6" />
-      </motion.a>
     </>
   );
 }

@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Building2, FileText, Users, Calculator, FileCheck, Scale, CreditCard, Phone, Mail, MapPin, Clock, Instagram, ChevronDown, Menu, X, ArrowRight, CheckCircle, Award, Shield, Heart, Leaf, Calendar } from 'lucide-react';
+import { Building2, FileText, Users, Calculator, FileCheck, Scale, CreditCard, Phone, Mail, MapPin, Clock, Instagram, ChevronDown, Menu, X, ArrowRight, CheckCircle, Award, Shield, Heart, Leaf, Calendar, Ribbon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import FeatureCard from '@/components/FeatureCard';
 import { FaWhatsapp } from 'react-icons/fa6';
 
@@ -35,6 +36,7 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
   const { scrollY } = useScroll();
   const headerOpacity = useTransform(scrollY, [0, 100], [0, 1]);
   const headerBackground = useTransform(scrollY, [0, 100], ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.95)']);
@@ -48,6 +50,11 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const linkBase = 'transition-colors';
+  const linkActive = 'text-[#00B74F] font-medium';
+  const linkInactive = 'text-gray-700 hover:text-[#00B74F]';
+  const navLinkClass = (path: string) => `${linkBase} ${pathname === path ? linkActive : linkInactive}`;
 
   const services = [
     { icon: Building2, title: 'Abertura de Empresas', description: 'Processo completo e desburocratizado para abrir sua empresa' },
@@ -91,12 +98,15 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="hidden md:flex gap-8">
-            <a href="#home" className="text-gray-700 hover:text-[#00B74F] transition-colors">Início</a>
-            <Link href="/sobre" className="text-gray-700 hover:text-[#00B74F] transition-colors">Sobre</Link>
-            <Link href="/servicos" className="text-gray-700 hover:text-[#00B74F] transition-colors">Serviços</Link>
-            <Link href="/clientes" className="text-gray-700 hover:text-[#00B74F] transition-colors">Clientes</Link>
-            <Link href="/contato" className="text-gray-700 hover:text-[#00B74F] transition-colors">Contato</Link>
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#home" className={`${linkBase} ${pathname === '/' ? linkActive : linkInactive}`}>Início</a>
+            <Link href="/sobre" className={navLinkClass('/sobre')}>Sobre</Link>
+            <Link href="/servicos" className={navLinkClass('/servicos')}>Serviços</Link>
+            <Link href="/clientes" className={navLinkClass('/clientes')}>Clientes</Link>
+            <Link href="/contato" className={navLinkClass('/contato')}>Contato</Link>
+            <span className="inline-flex items-center rounded-full bg-pink-100 px-2.5 py-1 text-xs font-semibold text-pink-600">
+              <Ribbon className="mr-1 h-3.5 w-3.5 text-pink-500" /> Outubro Rosa
+            </span>
           </div>
 
           <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -111,11 +121,14 @@ export default function Home() {
             className="md:hidden bg-white border-t"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              <a href="#home" className="text-gray-700 hover:text-[#00B74F] transition-colors" onClick={() => setIsMenuOpen(false)}>Início</a>
-              <Link href="/sobre" className="text-gray-700 hover:text-[#00B74F] transition-colors" onClick={() => setIsMenuOpen(false)}>Sobre</Link>
-              <Link href="/servicos" className="text-gray-700 hover:text-[#00B74F] transition-colors" onClick={() => setIsMenuOpen(false)}>Serviços</Link>
-              <Link href="/clientes" className="text-gray-700 hover:text-[#00B74F] transition-colors" onClick={() => setIsMenuOpen(false)}>Clientes</Link>
-              <Link href="/contato" className="text-gray-700 hover:text-[#00B74F] transition-colors" onClick={() => setIsMenuOpen(false)}>Contato</Link>
+              <a href="#home" className={`${linkBase} ${pathname === '/' ? linkActive : linkInactive}`} onClick={() => setIsMenuOpen(false)}>Início</a>
+              <Link href="/sobre" className={navLinkClass('/sobre')} onClick={() => setIsMenuOpen(false)}>Sobre</Link>
+              <Link href="/servicos" className={navLinkClass('/servicos')} onClick={() => setIsMenuOpen(false)}>Serviços</Link>
+              <Link href="/clientes" className={navLinkClass('/clientes')} onClick={() => setIsMenuOpen(false)}>Clientes</Link>
+              <Link href="/contato" className={navLinkClass('/contato')} onClick={() => setIsMenuOpen(false)}>Contato</Link>
+              <span className="mt-2 inline-flex w-fit items-center rounded-full bg-pink-100 px-2.5 py-1 text-xs font-semibold text-pink-600">
+                <Ribbon className="mr-1 h-3.5 w-3.5 text-pink-500" /> Outubro Rosa
+              </span>
             </div>
           </motion.div>
         )}
