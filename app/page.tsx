@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
 import Link from 'next/link';
 import FeatureCard from '@/components/FeatureCard';
+import { FaWhatsapp } from 'react-icons/fa6';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -210,7 +211,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   aria-label="Abrir WhatsApp"
                 >
-                  <Phone className="mr-2" />
+                  <FaWhatsapp className="mr-2 w-5 h-5" />
                   WhatsApp
                 </a>
               </Button>
