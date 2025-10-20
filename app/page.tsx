@@ -288,20 +288,22 @@ export default function Home() {
               <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full" />
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="bg-white rounded-3xl shadow-xl p-8 md:p-12 relative overflow-hidden">
-              {/* <div className="absolute top-0 right-0 w-32 h-32 bg-pink-200/20 rounded-full -translate-y-1/2 translate-x-1/2" /> */}
-              <div className="absolute bottom-0 left-0 w-40 h-40 bg-[#00B74F]/10 rounded-full translate-y-1/2 -translate-x-1/2" />
+            <motion.div variants={fadeInUp} className="bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-3xl shadow-2xl p-8 md:p-16 text-white text-center relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 -translate-x-1/2" />
+              <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full translate-y-1/2 translate-x-1/2" />
 
               <div className="relative z-10">
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                  A <span className="font-bold text-[#00B74F]">ASC Assessoria Contábil</span> oferece atendimento ágil e desburocratizado, com linguagem facilitada para melhor entendimento da contabilidade.
+                <p className="text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+                  Entregamos serviços contábeis de excelência, com atendimento personalizado e linguagem acessível, contribuindo para o crescimento sustentável dos negócios de nossos clientes através da ética, transparência e comprometimento.
                 </p>
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                  Nossa prioridade é a <span className="font-bold text-[#00B74F]">questão ética e sigilo</span>, mantendo um ambiente harmônico e ambientalista.
+                <p className="text-lg leading-relaxed max-w-3xl mx-auto text-white/90">
+                  Nossa <span className="font-semibold">assessoria jurídica</span> atua de forma integrada à contabilidade para orientar questões contratuais, societárias e de compliance, reduzindo riscos e dando segurança às decisões do seu negócio.
                 </p>
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                  Desde <span className="font-bold text-[#00B74F]">2014</span>, trabalhamos com excelência e comprometimento para ajudar nossos clientes a alcançarem seus objetivos.
-                </p>
+                <div className="mt-6">
+                  <Button asChild className="bg-white text-[#00B74F] hover:bg-white/90">
+                    <Link href="https://wa.me/5551980111096">Saiba mais</Link>
+                  </Button>
+                </div>
               </div>
             </motion.div>
           </motion.div>
