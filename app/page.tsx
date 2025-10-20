@@ -343,6 +343,13 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
+            
+            <motion.div variants={fadeInUp} className="mt-10 flex justify-center">
+              <Button asChild className="bg-[#00B74F] hover:bg-[#00A376]">
+                <Link href="/servicos">Ver mais</Link>
+              </Button>
+            </motion.div>
+           
           </motion.div>
         </div>
       </section>
