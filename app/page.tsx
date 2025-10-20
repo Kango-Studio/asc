@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import FeatureCard from '@/components/FeatureCard';
 import { FaWhatsapp } from 'react-icons/fa6';
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -37,6 +38,7 @@ export default function Home() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const [clientsCarouselApi, setClientsCarouselApi] = useState<CarouselApi | null>(null);
   const { scrollY } = useScroll();
   const headerOpacity = useTransform(scrollY, [0, 100], [0, 1]);
   const headerBackground = useTransform(scrollY, [0, 100], ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.95)']);
@@ -50,6 +52,15 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  useEffect(() => {
+    if (!clientsCarouselApi) return;
+    const id = setInterval(() => {
+      try {
+        clientsCarouselApi.scrollNext();
+      } catch {}
+    }, 2500);
+    return () => clearInterval(id);
+  }, [clientsCarouselApi]);
 
   const linkBase = 'transition-colors';
   const linkActive = 'text-[#00B74F] font-medium';
@@ -372,18 +383,25 @@ export default function Home() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {clients.map((client, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100 flex items-center justify-center min-h-[120px]"
-                >
-                  <h3 className="text-xl font-bold text-gray-900 text-center">{client}</h3>
-                </motion.div>
-              ))}
-            </div>
+            <Carousel
+              opts={{ align: 'start', loop: true }}
+              setApi={setClientsCarouselApi}
+              className="relative pb-6"
+            >
+              <CarouselContent className="pb-2">
+                {clients.map((client, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <motion.div
+                      variants={fadeInUp}
+                      whileHover={{ scale: 1.03 }}
+                      className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100 flex items-center justify-center min-h-[120px] mb-4"
+                    >
+                      <h3 className="text-xl font-bold text-gray-900 text-center">{client}</h3>
+                    </motion.div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </motion.div>
         </div>
       </section>
