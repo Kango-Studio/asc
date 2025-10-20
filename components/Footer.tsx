@@ -22,7 +22,7 @@ export default function Footer() {
               />
             </div>
             <p className="max-w-sm text-sm text-gray-300">
-              Desde 2014 com você. Gerando resultados e confiança.
+              Desde 2014, simplificando a contabilidade com ética, transparência e compromisso com o seu crescimento.
             </p>
           </div>
 
