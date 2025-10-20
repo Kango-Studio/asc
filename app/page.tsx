@@ -167,20 +167,20 @@ export default function Home() {
             {/* Headline */}
             <motion.h1
               variants={fadeInUp}
-              className="mx-auto mb-3 max-w-3xl text-3xl font-extrabold leading-tight text-gray-900 md:text-4xl lg:text-5xl"
+              className="mx-auto mb-3 max-w-2xl text-3xl font-extrabold leading-tight text-gray-900 md:text-4xl"
             >
-              Transformamos números em decisões inteligentes.
+              Contabilidade que impulsiona decisões.
               <span className="block bg-gradient-to-r from-[#00B74F] to-[#00A376] bg-clip-text text-transparent">
-                Assessoria contábil para quem quer ir além.
+                Resultado sem burocracia.
               </span>
             </motion.h1>
 
             {/* Subheadline */}
             <motion.p
               variants={fadeInUp}
-              className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg"
+              className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-gray-600"
             >
-              Contabilidade descomplicada, atendimento ágil e linguagem clara — para você focar no seu negócio.
+              Desde 2014, simplificamos a rotina fiscal e contábil da sua empresa — com ética, sigilo e linguagem clara.
             </motion.p>
 
             {/* CTAs */}
