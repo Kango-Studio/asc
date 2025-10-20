@@ -1,13 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Building2, FileText, Users, Calculator, FileCheck, Scale, CreditCard, Phone, Mail, MapPin, Clock, Instagram, ChevronDown, Menu, X, ArrowRight, CheckCircle, Award, Shield } from 'lucide-react';
+import { Building2, FileText, Users, Calculator, FileCheck, Scale, CreditCard, Phone, Mail, MapPin, Clock, Instagram, ChevronDown, Menu, X, ArrowRight, CheckCircle, Award, Shield, Heart, Leaf, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
 import Link from 'next/link';
+import FeatureCard from '@/components/FeatureCard';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -32,8 +33,20 @@ const scaleIn = {
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
   const headerOpacity = useTransform(scrollY, [0, 100], [0, 1]);
+  const headerBackground = useTransform(scrollY, [0, 100], ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.95)']);
+  const headerShadow = useTransform(scrollY, [0, 100], ['0 0 0px rgba(0, 0, 0, 0)', '0 4px 20px rgba(0, 0, 0, 0.1)']);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const services = [
     { icon: Building2, title: 'Abertura de Empresas', description: 'Processo completo e desburocratizado para abrir sua empresa' },
@@ -62,13 +75,19 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <motion.header
-        className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm"
-        style={{ opacity: headerOpacity }}
+        className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
+          isScrolled ? 'bg-white/95 shadow-lg' : 'bg-transparent'
+        }`}
+        style={{ 
+          backgroundColor: headerBackground,
+          boxShadow: headerShadow
+        }}
       >
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Image src="/image.png" alt="ASC Logo" width={50} height={50} className="object-contain" />
-            <span className="font-bold text-xl text-[#00B74F]">ASC Assessoria</span>
+            <Link href="/">
+              <Image src="/logo-horizontal-preto.png" alt="ASC Logo" width={280} height={280} className="object-contain" />
+            </Link>
           </div>
 
           <div className="hidden md:flex gap-8">
@@ -101,99 +120,144 @@ export default function Home() {
         )}
       </motion.header>
 
-      <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#00B74F]/5 via-white to-[#00A376]/5" />
+      <section id="home" className="relative h-[100vh] flex items-center justify-center pt-20 overflow-hidden">
+        {/* Background with subtle pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#00B74F]/6 via-white to-[#00A376]/6" />
+        
+        {/* Geometric background elements - more subtle */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-16 right-8 w-24 h-24 rounded-full bg-pink-200/30 blur-2xl" />
+          <div className="absolute bottom-16 left-8 w-32 h-32 rounded-full bg-[#00B74F]/10 blur-2xl" />
+          <div className="absolute top-1/2 left-1/3 w-20 h-20 rounded-full bg-[#00A376]/15 blur-xl" />
+        </div>
 
-        <div className="absolute top-20 right-10 w-32 h-32 rounded-full bg-pink-200/30 blur-3xl" />
-        <div className="absolute bottom-20 left-10 w-40 h-40 rounded-full bg-[#00B74F]/10 blur-3xl" />
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-3">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 25% 25%, #00B74F 1px, transparent 1px),
+                             radial-gradient(circle at 75% 75%, #00A376 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+            backgroundPosition: '0 0, 20px 20px'
+          }} />
+        </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
+          <motion.header
             className="max-w-4xl mx-auto text-center"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
           >
-            <motion.div variants={fadeInUp} className="mb-8">
-              <Image src="/image.png" alt="ASC Logo" width={200} height={200} className="mx-auto mb-6" />
+            {/* Logo + kicker */}
+            <motion.div variants={fadeInUp} className="mb-5 flex items-center justify-center gap-3">
+              <Image
+                src="/logo-padrao.png"
+                alt="ASC Assessoria Contábil"
+                width={56}
+                height={56}
+                className="rounded-md"
+                priority
+              />
+              <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium text-gray-600">
+                Desde 2014 • Ética & Sigilo
+              </span>
             </motion.div>
 
+            {/* Headline */}
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl md:text-7xl font-bold text-gray-900 mb-6"
+              className="mx-auto mb-3 max-w-3xl text-3xl font-extrabold leading-tight text-gray-900 md:text-4xl lg:text-5xl"
             >
-              ASC Assessoria <span className="text-[#00B74F]">Contábil</span>
+              Transformamos números em decisões inteligentes.
+              <span className="block bg-gradient-to-r from-[#00B74F] to-[#00A376] bg-clip-text text-transparent">
+                Assessoria contábil para quem quer ir além.
+              </span>
             </motion.h1>
 
+            {/* Subheadline */}
             <motion.p
               variants={fadeInUp}
-              className="text-xl md:text-2xl text-gray-600 mb-8"
+              className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg"
             >
-              Atendimento ágil e desburocratizado com linguagem facilitada
+              Contabilidade descomplicada, atendimento ágil e linguagem clara — para você focar no seu negócio.
             </motion.p>
 
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            {/* CTAs */}
+            <motion.div
+              variants={fadeInUp}
+              className="mb-12 flex flex-col justify-center gap-3 sm:flex-row"
+            >
               <Button
                 asChild
                 size="lg"
-                className="bg-[#00B74F] hover:bg-[#00A376] text-white text-lg px-8 py-6 group"
+                className="group bg-[#00B74F] px-6 py-4 text-white hover:bg-[#00A376]"
               >
-                <a href="#contato">
+                <a href="#contato" aria-label="Fale conosco">
                   Fale Conosco
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
+
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-[#00B74F] text-[#00B74F] hover:bg-[#00B74F] hover:text-white text-lg px-8 py-6"
+                className="border-[#00B74F] px-6 py-4 text-[#00B74F] hover:bg-[#00B74F] hover:text-white"
               >
-                <a href="https://wa.me/5551980111096" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://wa.me/5551980111096"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Abrir WhatsApp"
+                >
                   <Phone className="mr-2" />
                   WhatsApp
                 </a>
               </Button>
             </motion.div>
+          </motion.header>
 
-            <motion.div
-              variants={fadeInUp}
-              className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16"
-            >
-              <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                <CheckCircle className="w-12 h-12 text-[#00B74F] mx-auto mb-4" />
-                <h3 className="font-bold text-lg mb-2">Ética e Sigilo</h3>
-                <p className="text-gray-600">Comprometimento total com a confidencialidade</p>
-              </div>
-              <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                <Award className="w-12 h-12 text-[#00B74F] mx-auto mb-4" />
-                <h3 className="font-bold text-lg mb-2">Desde 2014</h3>
-                <p className="text-gray-600">Experiência e credibilidade no mercado</p>
-              </div>
-              <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                <Shield className="w-12 h-12 text-[#00B74F] mx-auto mb-4" />
-                <h3 className="font-bold text-lg mb-2">Ambiente Ambientalista</h3>
-                <p className="text-gray-600">Responsabilidade socioambiental</p>
-              </div>
-            </motion.div>
-          </motion.div>
+          {/* Feature cards */}
+          <motion.section
+            variants={fadeInUp}
+            className="mx-auto grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-3"
+          >
+            <FeatureCard
+              icon={<Heart className="h-8 w-8 text-[#00B74F]" />}
+              title="Ética & Sigilo"
+              desc="Compromisso absoluto com a confidencialidade."
+              accent="from-[#00B74F]"
+            />
+            <FeatureCard
+              icon={<Calendar className="h-8 w-8 text-[#00A376]" />}
+              title="Desde 2014"
+              desc="Experiência consolidada e proximidade com o cliente."
+              accent="from-[#00A376]"
+            />
+            <FeatureCard
+              icon={<Leaf className="h-8 w-8 text-[#00B74F]" />}
+              title="Ambientalista"
+              desc="Responsabilidade socioambiental no dia a dia."
+              accent="from-[#00B74F]"
+            />
+          </motion.section>
         </div>
 
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <ChevronDown className="w-8 h-8 text-[#00B74F]" />
+          <ChevronDown className="w-6 h-6 text-[#00B74F]" />
         </motion.div>
       </section>
 
       <section id="sobre" className="py-20 bg-gradient-to-br from-white via-[#00B74F]/5 to-white relative">
-        <div className="absolute top-20 right-20 w-64 h-64">
+        {/* <div className="absolute top-20 right-20 w-64 h-64">
           <svg viewBox="0 0 200 200" className="opacity-20">
             <path fill="#FF69B4" d="M 100, 30 C 120, 10 150, 10 170, 30 C 190, 50 190, 80 170, 100 L 100, 170 L 30, 100 C 10, 80 10, 50 30, 30 C 50, 10 80, 10 100, 30 Z" />
           </svg>
-        </div>
+        </div> */}
 
         <div className="container mx-auto px-4">
           <motion.div
@@ -211,7 +275,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="bg-white rounded-3xl shadow-xl p-8 md:p-12 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-pink-200/20 rounded-full -translate-y-1/2 translate-x-1/2" />
+              {/* <div className="absolute top-0 right-0 w-32 h-32 bg-pink-200/20 rounded-full -translate-y-1/2 translate-x-1/2" /> */}
               <div className="absolute bottom-0 left-0 w-40 h-40 bg-[#00B74F]/10 rounded-full translate-y-1/2 -translate-x-1/2" />
 
               <div className="relative z-10">
@@ -390,38 +454,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0">
-              <div className="flex items-center gap-2 mb-4">
-                <Image src="/image.png" alt="ASC Logo" width={40} height={40} className="object-contain brightness-0 invert" />
-                <span className="font-bold text-xl">ASC Assessoria Contábil</span>
-              </div>
-              <p className="text-gray-400">Desde 2014 com você</p>
-            </div>
-            <div className="text-center md:text-right">
-              <p className="text-pink-300 mb-2 font-semibold">Outubro Rosa - Juntos na prevenção</p>
-              <p className="text-gray-400">&copy; 2024 ASC Assessoria Contábil. Todos os direitos reservados.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      <motion.a
-        href="https://wa.me/5551980111096"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 1 }}
-      >
-        <Phone className="w-6 h-6" />
-      </motion.a>
     </div>
   );
 }

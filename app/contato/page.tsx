@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, Instagram, Send, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Instagram, Send } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Navigation from '@/components/Navigation';
+import { FaWhatsapp } from 'react-icons/fa6';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -46,7 +47,7 @@ export default function Contato() {
       icon: MapPin,
       title: 'Endereço',
       content: 'Avenida Padre Rizzieri Delai 705, sala 03 – Centro',
-      link: 'https://maps.google.com/?q=Avenida+Padre+Rizzieri+Delai+705'
+      link: 'https://maps.google.com/?q=Avenida+Padre+Rizzieri+Delai+705,+sala+03+–+Centro'
     },
     {
       icon: Phone,
@@ -59,7 +60,7 @@ export default function Contato() {
       icon: Clock,
       title: 'Horário de Atendimento',
       content: 'Segunda a sexta',
-      content2: '8h–12h / 13h30–18h'
+      content2: '8h–12h | 13h30–18h'
     },
     {
       icon: Instagram,
@@ -73,11 +74,11 @@ export default function Contato() {
     <div className="min-h-screen bg-white">
       <Navigation />
       <section className="relative py-20 pt-32 bg-gradient-to-br from-[#00B74F]/10 via-white to-pink-50/20 overflow-hidden">
-        <div className="absolute top-20 left-10 w-64 h-64">
+        {/* <div className="absolute top-20 left-10 w-64 h-64">
           <svg viewBox="0 0 200 200" className="opacity-10">
             <path fill="#FF69B4" d="M 100, 30 C 120, 10 150, 10 170, 30 C 190, 50 190, 80 170, 100 L 100, 170 L 30, 100 C 10, 80 10, 50 30, 30 C 50, 10 80, 10 100, 30 Z" />
           </svg>
-        </div>
+        </div> */}
 
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -87,14 +88,14 @@ export default function Contato() {
           >
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <Link href="/" className="inline-block mb-8">
-                <Image src="/image.png" alt="ASC Logo" width={120} height={120} className="mx-auto" />
+                <Image src="/logo-padrao.png" alt="ASC Logo" width={80} height={80} className="mx-auto" />
               </Link>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                 Entre em <span className="text-[#00B74F]">Contato</span>
               </h1>
               <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-6" />
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Estamos prontos para atender você e sua empresa
+                Estamos prontos para atender você e sua empresa.
               </p>
             </motion.div>
 
@@ -174,7 +175,7 @@ export default function Contato() {
                 <div className="bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-3xl p-8 text-white relative overflow-hidden mb-6">
                   <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
                   <div className="relative z-10">
-                    <MessageCircle className="w-12 h-12 mb-4" />
+                    <FaWhatsapp className="w-12 h-12 mb-4" />
                     <h3 className="text-2xl font-bold mb-3">Atendimento rápido via WhatsApp</h3>
                     <p className="mb-6 opacity-90">
                       Prefere conversar diretamente? Clique no botão abaixo e fale conosco pelo WhatsApp.
@@ -185,7 +186,7 @@ export default function Contato() {
                       className="bg-white text-[#00B74F] hover:bg-gray-100 w-full"
                     >
                       <a href="https://wa.me/5551980111096" target="_blank" rel="noopener noreferrer">
-                        <Phone className="mr-2" />
+                        <FaWhatsapp className="mr-2" />
                         Chamar no WhatsApp
                       </a>
                     </Button>
@@ -240,7 +241,7 @@ export default function Contato() {
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="aspect-video w-full">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.789!2d-51.123456!3d-29.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDA3JzI0LjQiUyA1McKwMDcnMjQuNCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+                    src="https://www.google.com/maps?q=Avenida+Padre+Rizzieri+Delai+705,+sala+03+–+Centro&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -253,13 +254,6 @@ export default function Contato() {
               </div>
             </motion.div>
           </motion.div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-pink-300 mb-2 font-semibold">Outubro Rosa - Juntos na prevenção</p>
-          <p className="text-gray-400">&copy; 2024 ASC Assessoria Contábil. Todos os direitos reservados.</p>
         </div>
       </section>
     </div>

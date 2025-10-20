@@ -14,8 +14,7 @@ export default function Navigation() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/image.png" alt="ASC Logo" width={50} height={50} className="object-contain" />
-            <span className="font-bold text-xl text-[#00B74F]">ASC Assessoria</span>
+            <Image src="/logo-horizontal-preto.png" alt="ASC Logo" width={280} height={280} className="object-contain" />
           </Link>
 
           <div className="hidden md:flex gap-8">

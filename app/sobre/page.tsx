@@ -59,11 +59,11 @@ export default function Sobre() {
     <div className="min-h-screen bg-white">
       <Navigation />
       <section className="relative py-20 pt-32 bg-gradient-to-br from-[#00B74F]/10 via-white to-pink-50/20 overflow-hidden">
-        <div className="absolute top-10 right-10 w-64 h-64">
+        {/* <div className="absolute top-10 right-10 w-64 h-64">
           <svg viewBox="0 0 200 200" className="opacity-10">
             <path fill="#FF69B4" d="M 100, 30 C 120, 10 150, 10 170, 30 C 190, 50 190, 80 170, 100 L 100, 170 L 30, 100 C 10, 80 10, 50 30, 30 C 50, 10 80, 10 100, 30 Z" />
           </svg>
-        </div>
+        </div> */}
 
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -74,7 +74,7 @@ export default function Sobre() {
           >
             <motion.div variants={fadeInUp} className="text-center mb-12">
               <Link href="/" className="inline-block mb-8">
-                <Image src="/image.png" alt="ASC Logo" width={120} height={120} className="mx-auto" />
+                <Image src="/logo-padrao.png" alt="ASC Logo" width={80} height={80} className="mx-auto" />
               </Link>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                 Sobre <span className="text-[#00B74F]">Nós</span>
@@ -83,24 +83,36 @@ export default function Sobre() {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="bg-white rounded-3xl shadow-2xl p-8 md:p-16 mb-16 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-pink-200/20 rounded-full -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gray-200/20 rounded-full -translate-y-1/2 translate-x-1/2" />
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#00B74F]/10 rounded-full translate-y-1/2 -translate-x-1/2" />
 
               <div className="relative z-10">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Quem Somos</h2>
-                <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  A <span className="font-bold text-[#00B74F]">ASC Assessoria Contábil</span> é uma empresa especializada em serviços contábeis que atua no mercado desde 2014, oferecendo soluções completas para empresas de diversos segmentos.
-                </p>
-                <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  Nosso diferencial está no <span className="font-bold text-[#00B74F]">atendimento ágil e desburocratizado</span>, com linguagem facilitada para que nossos clientes compreendam melhor os aspectos contábeis de seus negócios.
-                </p>
-                <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  Priorizamos a <span className="font-bold text-[#00B74F]">questão ética e o sigilo</span> das informações, mantendo um ambiente harmonioso e ambientalista que reflete nossos valores de responsabilidade social e sustentabilidade.
-                </p>
-                <p className="text-xl text-gray-700 leading-relaxed">
-                  Com uma equipe qualificada e em constante atualização, buscamos oferecer o melhor serviço contábil, estabelecendo relações de confiança e parceria de longo prazo com nossos clientes.
-                </p>
-              </div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Quem Somos</h2>
+              
+              <p className="text-xl text-gray-700 leading-relaxed mb-6">
+                A <span className="font-bold text-[#00B74F]">ASC Assessoria Contábil</span> é uma empresa com 
+                <span className="font-bold text-[#00B74F]"> experiência consolidada em contabilidade e assessoria jurídica</span>, 
+                atuando desde 2014 no suporte estratégico a empresas de diferentes portes e segmentos em todo o Brasil.
+              </p>
+              
+              <p className="text-xl text-gray-700 leading-relaxed mb-6">
+                Nosso diferencial está em um <span className="font-bold text-[#00B74F]">atendimento ágil, desburocratizado e personalizado</span>, 
+                com uma comunicação clara que aproxima o universo contábil da realidade de cada cliente.
+              </p>
+              
+              <p className="text-xl text-gray-700 leading-relaxed mb-6">
+                Atuamos com <span className="font-bold text-[#00B74F]">ética, sigilo e total transparência</span> nas informações, 
+                mantendo um ambiente de trabalho harmonioso, colaborativo e comprometido com práticas sustentáveis 
+                e responsabilidade socioambiental.
+              </p>
+              
+              <p className="text-xl text-gray-700 leading-relaxed">
+                Com uma equipe multidisciplinar e constantemente atualizada, a ASC oferece 
+                <span className="font-bold text-[#00B74F]"> soluções completas em contabilidade, fiscal, pessoal, societário e jurídico</span>, 
+                garantindo segurança e tranquilidade para empresas que buscam eficiência, conformidade e crescimento.
+              </p>
+            </div>
+
             </motion.div>
 
             <motion.div variants={fadeInUp} className="mb-16">
@@ -141,13 +153,6 @@ export default function Sobre() {
               </div>
             </motion.div>
           </motion.div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-pink-300 mb-2 font-semibold">Outubro Rosa - Juntos na prevenção</p>
-          <p className="text-gray-400">&copy; 2024 ASC Assessoria Contábil. Todos os direitos reservados.</p>
         </div>
       </section>
     </div>

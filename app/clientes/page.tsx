@@ -78,34 +78,34 @@ export default function Clientes() {
     {
       icon: Star,
       title: 'Atendimento Premium',
-      description: 'Cada cliente recebe atenção exclusiva e personalizada'
+      description: 'Cada cliente recebe atenção exclusiva e personalizada.'
     },
     {
       icon: ThumbsUp,
       title: 'Satisfação Garantida',
-      description: 'Compromisso com a qualidade e resultados efetivos'
+      description: 'Compromisso com a qualidade e resultados efetivos.'
     },
     {
       icon: Award,
       title: 'Experiência Comprovada',
-      description: 'Mais de 10 anos de sucesso e parceiras duradouras'
+      description: 'Mais de 10 anos de sucesso e parceiras duradouras.'
     },
     {
       icon: TrendingUp,
       title: 'Crescimento Conjunto',
-      description: 'Ajudamos nossos clientes a alcançarem seus objetivos'
+      description: 'Ajudamos nossos clientes a alcançarem seus objetivos.'
     }
   ];
 
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      <section className="relative py-20 pt-32 bg-gradient-to-br from-[#00B74F]/10 via-white to-pink-50/20 overflow-hidden">
-        <div className="absolute top-20 right-10 w-64 h-64">
+      <section className="relative py-20 pt-40 bg-gradient-to-br from-[#00B74F]/10 via-white to-pink-50/20 overflow-hidden">
+        {/* <div className="absolute top-20 right-10 w-64 h-64">
           <svg viewBox="0 0 200 200" className="opacity-10">
             <path fill="#FF69B4" d="M 100, 30 C 120, 10 150, 10 170, 30 C 190, 50 190, 80 170, 100 L 100, 170 L 30, 100 C 10, 80 10, 50 30, 30 C 50, 10 80, 10 100, 30 Z" />
           </svg>
-        </div>
+        </div> */}
 
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -115,14 +115,14 @@ export default function Clientes() {
           >
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <Link href="/" className="inline-block mb-8">
-                <Image src="/image.png" alt="ASC Logo" width={120} height={120} className="mx-auto" />
+                <Image src="/logo-padrao.png" alt="ASC Logo" width={80} height={80} className="mx-auto" />
               </Link>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                 Nossos <span className="text-[#00B74F]">Clientes</span>
               </h1>
               <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-6" />
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Empresas que confiam em nosso trabalho e crescem conosco
+                Empresas que confiam em nosso trabalho e crescem conosco.
               </p>
             </motion.div>
 
@@ -234,13 +234,6 @@ export default function Clientes() {
               </div>
             </motion.div>
           </motion.div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-pink-300 mb-2 font-semibold">Outubro Rosa - Juntos na prevenção</p>
-          <p className="text-gray-400">&copy; 2024 ASC Assessoria Contábil. Todos os direitos reservados.</p>
         </div>
       </section>
     </div>
