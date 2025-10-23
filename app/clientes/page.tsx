@@ -101,17 +101,17 @@ export default function Clientes() {
               <Link href="/" className="inline-block mb-8">
                 <Image src="/logo-padrao.png" alt="ASC Logo" width={80} height={80} className="mx-auto" />
               </Link>
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                 Nossos <span className="text-[#00B74F]">Clientes</span>
               </h1>
               <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-6" />
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
                 Empresas que confiam em nosso trabalho e crescem conosco.
               </p>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="mb-20">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-12">
                 Quem <span className="text-[#00B74F]">Confia</span> na ASC
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -120,17 +120,17 @@ export default function Clientes() {
                     key={index}
                     variants={fadeInUp}
                     whileHover={{ scale: 1.05, y: -10 }}
-                    className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 p-8 relative group overflow-hidden"
+                    className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 p-6 sm:p-8 relative group overflow-hidden"
                   >
                     <div className="absolute top-0 right-0 w-24 h-24 bg-pink-200/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#00B74F]/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
                     <div className="relative z-10">
-                      <div className="w-16 h-16 bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-full flex items-center justify-center mb-4">
-                        <span className="text-white font-bold text-2xl">{client.name.charAt(0)}</span>
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-full flex items-center justify-center mb-4">
+                        <span className="text-white font-bold text-lg sm:text-xl md:text-2xl">{client.name.charAt(0)}</span>
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">{client.name}</h3>
-                      <p className="text-gray-600 mb-3">{client.segment}</p>
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{client.name}</h3>
+                      <p className="text-sm sm:text-base text-gray-600 mb-3">{client.segment}</p>
                       <div className="inline-block bg-[#00B74F]/10 px-4 py-2 rounded-full">
                         <p className="text-sm text-[#00B74F] font-semibold">Cliente desde {client.since}</p>
                       </div>
@@ -141,7 +141,7 @@ export default function Clientes() {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="mb-20">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-4">
                 O que nossos clientes <span className="text-[#00B74F]">dizem</span>
               </h2>
               <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-12" />
@@ -152,7 +152,7 @@ export default function Clientes() {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="mb-16">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-12">
                 Por que escolher a <span className="text-[#00B74F]">ASC</span>
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
