@@ -81,7 +81,7 @@ export default function Home() {
     'Leffa Móveis',
     'Apara Barro Dema',
     'Comércio de Bananas Borges',
-    'Niel Diesel',
+    'Nil Diesel',
     'Traffic Control',
     'LDO Business'
   ];
