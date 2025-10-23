@@ -64,7 +64,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     <div
       onClick={() => handleMove(position)}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out",
+        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-4 sm:p-6 md:p-8 transition-all duration-500 ease-in-out",
         isCenter 
           ? "z-10 bg-[#00B74F] text-white border-[#00B74F]" 
           : "z-0 bg-white text-gray-900 border-gray-200 hover:border-[#00B74F]/50"
@@ -94,24 +94,24 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <img
         src={testimonial.imgSrc}
         alt={`${testimonial.by.split(',')[0]}`}
-        className="mb-4 h-14 w-12 bg-gray-100 object-cover object-top"
+        className="mb-3 sm:mb-4 h-10 w-8 sm:h-12 sm:w-10 md:h-14 md:w-12 bg-gray-100 object-cover object-top"
         style={{
           boxShadow: "3px 3px 0px #ffffff"
         }}
       />
-      <div className="flex gap-1 mb-4">
+      <div className="flex gap-1 mb-3 sm:mb-4">
         {[...Array(5)].map((_, i) => (
-          <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
+          <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500 fill-current" />
         ))}
       </div>
       <h3 className={cn(
-        "text-base sm:text-lg font-medium leading-relaxed",
+        "text-sm sm:text-base md:text-lg font-medium leading-relaxed",
         isCenter ? "text-white" : "text-gray-900"
       )}>
         "{testimonial.testimonial}"
       </h3>
       <p className={cn(
-        "absolute bottom-8 left-8 right-8 mt-2 text-sm font-semibold",
+        "absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-8 right-4 sm:right-6 md:right-8 mt-2 text-xs sm:text-sm font-semibold",
         isCenter ? "text-white/90" : "text-[#00B74F]"
       )}>
         - {testimonial.by}
@@ -122,6 +122,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
 export const StaggerTestimonials: React.FC = () => {
   const [cardSize, setCardSize] = useState(365);
+  const [containerHeight, setContainerHeight] = useState(600);
   const [testimonialsList, setTestimonialsList] = useState(testimonials);
 
   const handleMove = (steps: number) => {
@@ -145,7 +146,8 @@ export const StaggerTestimonials: React.FC = () => {
   useEffect(() => {
     const updateSize = () => {
       const { matches } = window.matchMedia("(min-width: 640px)");
-      setCardSize(matches ? 365 : 290);
+      setCardSize(matches ? 365 : 320);
+      setContainerHeight(matches ? 600 : 700);
     };
 
     updateSize();
@@ -156,7 +158,7 @@ export const StaggerTestimonials: React.FC = () => {
   return (
     <div
       className="relative w-full"
-      style={{ height: 600 }}
+      style={{ height: containerHeight }}
     >
       {testimonialsList.map((testimonial, index) => {
         const position = testimonialsList.length % 2
