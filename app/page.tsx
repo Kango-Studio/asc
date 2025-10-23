@@ -184,7 +184,7 @@ export default function Home() {
         )}
       </motion.header>
 
-      <section id="home" className="relative min-h-[100vh] flex items-center justify-center pt-20 pb-20 overflow-hidden">
+      <section id="home" className="relative min-h-[100vh] flex items-center justify-center pt-20 pb-20 overflow-x-hidden">
         {/* Background with subtle pattern */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#00B74F]/6 via-white to-[#00A376]/6" />
         
@@ -257,9 +257,9 @@ export default function Home() {
           }} />
         </div>
 
-        <div className="container mx-auto px-4 py-8 sm:py-12 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12 relative z-10">
           <motion.header
-            className="max-w-4xl mx-auto text-center"
+            className="w-full mx-auto text-center"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
@@ -282,38 +282,32 @@ export default function Home() {
             {/* Headline */}
             <motion.h1
               variants={fadeInUp}
-              className="mx-auto mb-3 max-w-4xl text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl md:text-6xl lg:text-7xl"
+              className="mx-auto pb-6 w-full text-center text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl px-8 sm:px-12 md:px-16"
             >
-              <motion.span 
-                className="block"
-                initial={{ opacity: 0, y: 50 }}
+              <motion.span
+                className="block pb-2"
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Contabilidade que{' '}
-                <motion.span
-                  className="relative inline-block"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                >
-                  impulsiona
-                  <motion.div
-                    className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#00B74F]/20 to-[#00A376]/20 rounded-full"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                  />
-                </motion.span>
-                {' '}decisões.
+                Gestão contábil
               </motion.span>
-              <motion.span 
-                className="block mt-2 bg-gradient-to-r from-[#00B74F] to-[#00A376] bg-clip-text text-transparent"
-                initial={{ opacity: 0, y: 30 }}
+
+              <motion.span
+                className="block bg-gradient-to-r from-[#00B74F] to-[#00A376] md:h-24 w-full bg-clip-text text-transparent"
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
               >
-                Resultado sem burocracia.
+                inteligente
+                <motion.span
+                  className="text-[#00B74F]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.2, duration: 0.4 }}
+                >
+                  .
+                </motion.span>
               </motion.span>
             </motion.h1>
 
