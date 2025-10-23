@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Navigation from '@/components/Navigation';
+import { StaggerTestimonials } from '@/components/StaggerTestimonials';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -56,23 +57,6 @@ export default function Clientes() {
     }
   ];
 
-  const testimonials = [
-    {
-      client: 'Leffa Móveis',
-      text: 'A ASC transformou nossa gestão contábil. Atendimento excepcional e linguagem clara que facilita muito nosso dia a dia.',
-      author: 'Gestão Leffa Móveis'
-    },
-    {
-      client: 'Traffic Control',
-      text: 'Profissionalismo, agilidade e ética. A parceria com a ASC é fundamental para o crescimento da nossa empresa.',
-      author: 'Traffic Control'
-    },
-    {
-      client: 'LDO Business',
-      text: 'Excelente assessoria! A equipe está sempre disponível e nos ajuda a tomar as melhores decisões estratégicas.',
-      author: 'LDO Business'
-    }
-  ];
 
   const benefits = [
     {
@@ -162,28 +146,8 @@ export default function Clientes() {
               </h2>
               <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-12" />
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {testimonials.map((testimonial, index) => (
-                  <motion.div
-                    key={index}
-                    variants={fadeInUp}
-                    whileHover={{ y: -10 }}
-                    className="bg-gradient-to-br from-white to-[#00B74F]/5 rounded-2xl shadow-lg p-8 border border-gray-100 relative"
-                  >
-                    <div className="absolute top-6 right-6 text-[#00B74F]/20">
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
-                      </svg>
-                    </div>
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
-                      ))}
-                    </div>
-                    <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
-                    <p className="font-bold text-[#00B74F]">{testimonial.author}</p>
-                  </motion.div>
-                ))}
+              <div className="w-full mx-auto">
+                <StaggerTestimonials />
               </div>
             </motion.div>
 
