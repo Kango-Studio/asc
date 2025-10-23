@@ -260,9 +260,9 @@ export default function Home() {
               accent="from-[#00A376]"
             />
             <FeatureCard
-              icon={<Leaf className="h-8 w-8 text-[#00B74F]" />}
-              title="Ambientalista"
-              desc="Responsabilidade socioambiental no dia a dia."
+              icon={<Shield className="h-8 w-8 text-[#00B74F]" />}
+              title="Responsabilidade Civil"
+              desc="Seguro de responsabilidade civil para proteger sua empresa."
               accent="from-[#00B74F]"
             />
           </motion.section>
