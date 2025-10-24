@@ -1,16 +1,18 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Star, ThumbsUp, Award, TrendingUp } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import Navigation from '@/components/Navigation';
-import { StaggerTestimonials } from '@/components/StaggerTestimonials';
+import { motion } from "framer-motion";
+import { benefits } from "@/constants/benefits";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import Navigation from "@/components/Navigation";
+import { StaggerTestimonials } from "@/components/StaggerTestimonials";
+import { clients } from "@/constants/clients";
+import { ClientsFeedback } from "@/components/screens/home/clients-feedback";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 }
+  visible: { opacity: 1, y: 0 },
 };
 
 const staggerContainer = {
@@ -18,68 +20,12 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15
-    }
-  }
+      staggerChildren: 0.15,
+    },
+  },
 };
 
 export default function Clientes() {
-  const clients = [
-    {
-      name: 'Leffa Móveis',
-      segment: 'Comércio de Móveis',
-      since: '2015'
-    },
-    {
-      name: 'Apara Barro Dema',
-      segment: 'Indústria',
-      since: '2016'
-    },
-    {
-      name: 'Comércio de Bananas Borges',
-      segment: 'Distribuição de Alimentos',
-      since: '2017'
-    },
-    {
-      name: 'Niel Diesel',
-      segment: 'Autopeças e Serviços',
-      since: '2018'
-    },
-    {
-      name: 'Traffic Control',
-      segment: 'Tecnologia e Serviços',
-      since: '2019'
-    },
-    {
-      name: 'LDO Business',
-      segment: 'Consultoria Empresarial',
-      since: '2020'
-    }
-  ];
-
-
-  const benefits = [
-    {
-      icon: Star,
-      title: 'Atendimento Premium',
-      description: 'Cada cliente recebe atenção exclusiva e personalizada.'
-    },
-    {
-      icon: ThumbsUp,
-      title: 'Satisfação Garantida',
-      description: 'Compromisso com a qualidade e resultados efetivos.'
-    },
-    {
-      icon: Award,
-      title: 'Experiência Comprovada',
-      description: 'Mais de 10 anos de sucesso e parceiras duradouras.'
-    },
-    {
-      icon: TrendingUp,
-      title: 'Crescimento Conjunto',
-      description: 'Ajudamos nossos clientes a alcançarem seus objetivos.'
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -99,7 +45,13 @@ export default function Clientes() {
           >
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <Link href="/" className="inline-block mb-8">
-                <Image src="/logo-padrao.png" alt="ASC Logo" width={80} height={80} className="mx-auto" />
+                <Image
+                  src="/logo-padrao.png"
+                  alt="ASC Logo"
+                  width={80}
+                  height={80}
+                  className="mx-auto"
+                />
               </Link>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                 Nossos <span className="text-[#00B74F]">Clientes</span>
@@ -127,79 +79,31 @@ export default function Clientes() {
 
                     <div className="relative z-10">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-full flex items-center justify-center mb-4">
-                        <span className="text-white font-bold text-lg sm:text-xl md:text-2xl">{client.name.charAt(0)}</span>
+                        <span className="text-white font-bold text-lg sm:text-xl md:text-2xl">
+                          {client.name.charAt(0)}
+                        </span>
                       </div>
-                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{client.name}</h3>
-                      <p className="text-sm sm:text-base text-gray-600 mb-3">{client.segment}</p>
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                        {client.name}
+                      </h3>
+                      <p className="text-sm sm:text-base text-gray-600 mb-3">
+                        {client.segment}
+                      </p>
                       <div className="inline-block bg-[#00B74F]/10 px-4 py-2 rounded-full">
-                        <p className="text-sm text-[#00B74F] font-semibold">Cliente desde {client.since}</p>
+                        <p className="text-sm text-[#00B74F] font-semibold">
+                          Cliente desde {client.since}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
                 ))}
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="mb-20">
-              <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-4">
-                O que nossos clientes <span className="text-[#00B74F]">dizem</span>
-              </h2>
-              <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-12" />
-
-              <div className="w-full mx-auto">
-                <StaggerTestimonials />
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-12">
-                Por que escolher a <span className="text-[#00B74F]">ASC</span>
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                {benefits.map((benefit, index) => (
-                  <motion.div
-                    key={index}
-                    variants={fadeInUp}
-                    whileHover={{ scale: 1.05 }}
-                    className="text-center p-6"
-                  >
-                    <div className="w-20 h-20 bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                      <benefit.icon className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                    <p className="text-gray-600">{benefit.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-3xl p-12 max-w-4xl mx-auto text-white relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 -translate-x-1/2" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full translate-y-1/2 translate-x-1/2" />
-
-                <div className="relative z-10">
-                  <h2 className="text-4xl font-bold mb-4">
-                    Faça parte dos nossos clientes
-                  </h2>
-                  <p className="text-xl mb-8 opacity-90">
-                    Venha crescer junto com a ASC Assessoria Contábil
-                  </p>
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-white text-[#00B74F] hover:bg-gray-100 text-lg px-12 py-6"
-                  >
-                    <Link href="/contato">
-                      Entre em Contato
-                    </Link>
-                  </Button>
-                </div>
               </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
+
+      <ClientsFeedback title="O que nossos clientes" titleSuffix="dizem" />
     </div>
   );
 }
