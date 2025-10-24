@@ -70,8 +70,8 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-4 text-sm text-gray-400 md:flex-row">
           <p>© {new Date().getFullYear()} ASC Assessoria Contábil. Todos os direitos reservados.</p>
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-white">Política de Privacidade</Link>
-            <Link href="#" className="hover:text-white">Termos de Uso</Link>
+            <Link href="/politica-privacidade" className="hover:text-white">Política de Privacidade</Link>
+            <Link href="/termos-uso" className="hover:text-white">Termos de Uso</Link>
           </div>
         </div>
       </div>
