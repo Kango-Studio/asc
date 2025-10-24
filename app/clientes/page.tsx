@@ -1,34 +1,14 @@
 "use client";
-export const benefits = [
-  {
-    icon: Star,
-    title: "Atendimento Premium",
-    description: "Cada cliente recebe atenção exclusiva e personalizada.",
-  },
-  {
-    icon: ThumbsUp,
-    title: "Satisfação Garantida",
-    description: "Compromisso com a qualidade e resultados efetivos.",
-  },
-  {
-    icon: Award,
-    title: "Experiência Comprovada",
-    description: "Mais de 10 anos de sucesso e parceiras duradouras.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Crescimento Conjunto",
-    description: "Ajudamos nossos clientes a alcançarem seus objetivos.",
-  },
-];
 
 import { motion } from "framer-motion";
-import { Star, ThumbsUp, Award, TrendingUp } from "lucide-react";
+import { benefits } from "@/constants/benefits";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import { StaggerTestimonials } from "@/components/StaggerTestimonials";
+import { clients } from "@/constants/clients";
+import { ClientsFeedback } from "@/components/screens/home/clients-feedback";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -46,61 +26,6 @@ const staggerContainer = {
 };
 
 export default function Clientes() {
-  const clients = [
-    {
-      name: "Leffa Móveis",
-      segment: "Comércio de Móveis",
-      since: "2015",
-    },
-    {
-      name: "Apara Barro Dema",
-      segment: "Indústria",
-      since: "2016",
-    },
-    {
-      name: "Comércio de Bananas Borges",
-      segment: "Distribuição de Alimentos",
-      since: "2017",
-    },
-    {
-      name: "Niel Diesel",
-      segment: "Autopeças e Serviços",
-      since: "2018",
-    },
-    {
-      name: "Traffic Control",
-      segment: "Tecnologia e Serviços",
-      since: "2019",
-    },
-    {
-      name: "LDO Business",
-      segment: "Consultoria Empresarial",
-      since: "2020",
-    },
-  ];
-
-  const benefits = [
-    {
-      icon: Star,
-      title: "Atendimento Premium",
-      description: "Cada cliente recebe atenção exclusiva e personalizada.",
-    },
-    {
-      icon: ThumbsUp,
-      title: "Satisfação Garantida",
-      description: "Compromisso com a qualidade e resultados efetivos.",
-    },
-    {
-      icon: Award,
-      title: "Experiência Comprovada",
-      description: "Mais de 10 anos de sucesso e parceiras duradouras.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Crescimento Conjunto",
-      description: "Ajudamos nossos clientes a alcançarem seus objetivos.",
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -177,6 +102,8 @@ export default function Clientes() {
           </motion.div>
         </div>
       </section>
+
+      <ClientsFeedback title="O que nossos clientes" titleSuffix="dizem" />
     </div>
   );
 }
