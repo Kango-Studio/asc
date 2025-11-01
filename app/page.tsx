@@ -342,7 +342,7 @@ export default function Home() {
                 className="block pb-2"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
               >
                 Gestão contábil
               </motion.span>
@@ -351,14 +351,14 @@ export default function Home() {
                 className="block bg-gradient-to-r from-[#00B74F] to-[#00A376] md:h-24 w-full bg-clip-text text-transparent"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
               >
                 inteligente
                 <motion.span
                   className="text-[#00B74F]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 1.2, duration: 0.4 }}
+                  transition={{ delay: 0.5, duration: 0.3 }}
                 >
                   .
                 </motion.span>
@@ -370,20 +370,20 @@ export default function Home() {
               className="mx-auto mb-8 max-w-3xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
               <motion.p
                 className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.6 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
               >
                 Simplificamos a rotina fiscal e contábil da sua empresa — com{" "}
                 <motion.span
                   className="font-semibold text-[#00B74F]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 2.0 }}
+                  transition={{ duration: 0.3, delay: 0.9 }}
                 >
                   ética
                 </motion.span>
@@ -392,7 +392,7 @@ export default function Home() {
                   className="font-semibold text-[#00A376]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 2.2 }}
+                  transition={{ duration: 0.3, delay: 1.0 }}
                 >
                   sigilo
                 </motion.span>{" "}
@@ -401,7 +401,7 @@ export default function Home() {
                   className="font-semibold text-[#00B74F]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 2.4 }}
+                  transition={{ duration: 0.3, delay: 1.1 }}
                 >
                   linguagem clara
                 </motion.span>
@@ -414,7 +414,7 @@ export default function Home() {
               className="mb-8 sm:mb-12 flex flex-col justify-center gap-3 sm:gap-4 sm:flex-row"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 2.6 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
             >
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -431,7 +431,7 @@ export default function Home() {
                       className="relative z-10 flex items-center"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 2.8 }}
+                      transition={{ duration: 0.4, delay: 1.3 }}
                     >
                       Fale Conosco
                       <motion.div
@@ -440,7 +440,7 @@ export default function Home() {
                         transition={{
                           duration: 1.5,
                           repeat: Infinity,
-                          delay: 3.0,
+                          delay: 1.5,
                         }}
                       >
                         <ArrowRight className="transition-transform group-hover:translate-x-1" />
@@ -477,14 +477,14 @@ export default function Home() {
                       className="relative z-10 flex items-center"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 3.0 }}
+                      transition={{ duration: 0.4, delay: 1.4 }}
                     >
                       <motion.div
                         animate={{ rotate: [0, 10, -10, 0] }}
                         transition={{
                           duration: 2,
                           repeat: Infinity,
-                          delay: 3.2,
+                          delay: 1.6,
                         }}
                       >
                         <FaWhatsapp className="mr-2 w-5 h-5" />
@@ -499,21 +499,22 @@ export default function Home() {
 
           {/* Feature cards */}
           <motion.section
-            className="mx-auto grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-3"
+            className="mx-auto grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-3 justify-items-center"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 3.4 }}
+            transition={{ duration: 0.6, delay: 1.6 }}
           >
             <motion.div
               initial={{ opacity: 0, y: 30, rotateY: -15 }}
               animate={{ opacity: 1, y: 0, rotateY: 0 }}
-              transition={{ duration: 0.6, delay: 3.6 }}
+              transition={{ duration: 0.5, delay: 1.7 }}
               whileHover={{
                 scale: 1.05,
                 y: -10,
                 rotateY: 5,
                 transition: { duration: 0.3 },
               }}
+              className="w-full max-w-sm sm:max-w-none"
             >
               <FeatureCard
                 icon={<Heart className="h-8 w-8 text-[#00B74F]" />}
@@ -525,13 +526,14 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 30, rotateY: -15 }}
               animate={{ opacity: 1, y: 0, rotateY: 0 }}
-              transition={{ duration: 0.6, delay: 3.8 }}
+              transition={{ duration: 0.5, delay: 1.8 }}
               whileHover={{
                 scale: 1.05,
                 y: -10,
                 rotateY: 5,
                 transition: { duration: 0.3 },
               }}
+              className="w-full max-w-sm sm:max-w-none"
             >
               <FeatureCard
                 icon={<Calendar className="h-8 w-8 text-[#00A376]" />}
@@ -543,13 +545,14 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 30, rotateY: -15 }}
               animate={{ opacity: 1, y: 0, rotateY: 0 }}
-              transition={{ duration: 0.6, delay: 4.0 }}
+              transition={{ duration: 0.5, delay: 1.9 }}
               whileHover={{
                 scale: 1.05,
                 y: -10,
                 rotateY: 5,
                 transition: { duration: 0.3 },
               }}
+              className="w-full max-w-sm sm:max-w-none"
             >
               <FeatureCard
                 icon={<Shield className="h-8 w-8 text-[#00B74F]" />}
@@ -562,15 +565,15 @@ export default function Home() {
         </div>
 
         <motion.div
-          className="absolute bottom-6 left-1/2 -translate-x-1/2"
+          className="hidden md:block absolute bottom-6 left-1/2 -translate-x-1/2"
           initial={{ opacity: 0, y: 20 }}
           animate={{
             opacity: 1,
             y: [0, 8, 0],
           }}
           transition={{
-            opacity: { duration: 0.8, delay: 4.2 },
-            y: { duration: 2, repeat: Infinity, delay: 4.5 },
+            opacity: { duration: 0.6, delay: 2.0 },
+            y: { duration: 2, repeat: Infinity, delay: 2.2 },
           }}
         >
           <motion.div
