@@ -2,14 +2,16 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, Instagram, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Instagram, Send, AlertCircle, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import Navigation from '@/components/Navigation';
 import { FaWhatsapp } from 'react-icons/fa6';
+import { maskPhone, isValidPhone, isValidEmail } from '@/lib/utils/mask';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -26,20 +28,124 @@ const staggerContainer = {
   }
 };
 
+interface FormErrors {
+  name?: string;
+  email?: string;
+  phone?: string;
+  subject?: string;
+  message?: string;
+}
+
 export default function Contato() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
+  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    // Validação de nome
+    if (!formData.name.trim()) {
+      newErrors.name = 'Nome completo é obrigatório';
+    } else if (formData.name.trim().length < 3) {
+      newErrors.name = 'Nome deve ter pelo menos 3 caracteres';
+    }
+
+    // Validação de email
+    if (!formData.email.trim()) {
+      newErrors.email = 'E-mail é obrigatório';
+    } else if (!isValidEmail(formData.email)) {
+      newErrors.email = 'E-mail inválido';
+    }
+
+    // Validação de telefone (obrigatório conforme solicitado)
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Telefone é obrigatório';
+    } else if (!isValidPhone(formData.phone)) {
+      newErrors.phone = 'Telefone inválido. Use o formato (00) 00000-0000';
+    }
+
+    // Validação de assunto
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Assunto é obrigatório';
+    } else if (formData.subject.trim().length < 3) {
+      newErrors.subject = 'Assunto deve ter pelo menos 3 caracteres';
+    }
+
+    // Validação de mensagem
+    if (!formData.message.trim()) {
+      newErrors.message = 'Mensagem é obrigatória';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Mensagem deve ter pelo menos 10 caracteres';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const maskedValue = maskPhone(e.target.value);
+    setFormData({ ...formData, phone: maskedValue });
+    // Remove erro do campo quando o usuário começa a digitar
+    if (errors.phone) {
+      setErrors({ ...errors, phone: undefined });
+    }
+  };
+
+  const handleFieldChange = (field: keyof typeof formData) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [field]: e.target.value });
+    // Remove erro do campo quando o usuário começa a digitar
+    if (errors[field]) {
+      setErrors({ ...errors, [field]: undefined });
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitStatus(null);
+
+    // Validação antes de enviar
+    if (!validateForm()) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Por favor, corrija os erros no formulário antes de enviar.'
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch('/api/contato', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    console.log('Form submitted:', formData);
-    alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-    setIsSubmitting(false);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao enviar mensagem');
+      }
+
+      // Sucesso
+      setSubmitStatus({
+        type: 'success',
+        message: 'Mensagem enviada com sucesso! Em breve entraremos em contato.'
+      });
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setErrors({});
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'Erro ao enviar mensagem. Tente novamente mais tarde.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -106,66 +212,121 @@ export default function Contato() {
                     Envie sua mensagem
                   </h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {submitStatus && (
+                      <Alert variant={submitStatus.type === 'error' ? 'destructive' : 'default'} className={submitStatus.type === 'success' ? 'bg-green-50 border-green-200 text-green-800' : ''}>
+                        {submitStatus.type === 'success' ? (
+                          <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        ) : (
+                          <AlertCircle className="h-4 w-4" />
+                        )}
+                        <AlertDescription className={submitStatus.type === 'success' ? 'text-green-800' : ''}>
+                          {submitStatus.message}
+                        </AlertDescription>
+                      </Alert>
+                    )}
+
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">Nome completo *</label>
+                      <label className="block text-gray-700 font-semibold mb-2">
+                        Nome completo *
+                      </label>
                       <Input
                         type="text"
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full"
+                        onChange={handleFieldChange('name')}
+                        className={`w-full ${errors.name ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                         placeholder="Seu nome"
-                        required
                       />
+                      {errors.name && (
+                        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                          <AlertCircle className="h-3 w-3" />
+                          {errors.name}
+                        </p>
+                      )}
                     </div>
+
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">E-mail *</label>
+                      <label className="block text-gray-700 font-semibold mb-2">
+                        E-mail *
+                      </label>
                       <Input
                         type="email"
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full"
+                        onChange={handleFieldChange('email')}
+                        className={`w-full ${errors.email ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                         placeholder="seu@email.com"
-                        required
                       />
+                      {errors.email && (
+                        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                          <AlertCircle className="h-3 w-3" />
+                          {errors.email}
+                        </p>
+                      )}
                     </div>
+
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">Telefone</label>
+                      <label className="block text-gray-700 font-semibold mb-2">
+                        Telefone *
+                      </label>
                       <Input
                         type="tel"
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full"
+                        onChange={handlePhoneChange}
+                        className={`w-full ${errors.phone ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                         placeholder="(00) 00000-0000"
+                        maxLength={15}
                       />
+                      {errors.phone && (
+                        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                          <AlertCircle className="h-3 w-3" />
+                          {errors.phone}
+                        </p>
+                      )}
                     </div>
+
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">Assunto *</label>
+                      <label className="block text-gray-700 font-semibold mb-2">
+                        Assunto *
+                      </label>
                       <Input
                         type="text"
                         value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full"
+                        onChange={handleFieldChange('subject')}
+                        className={`w-full ${errors.subject ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                         placeholder="Sobre o que deseja falar?"
-                        required
                       />
+                      {errors.subject && (
+                        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                          <AlertCircle className="h-3 w-3" />
+                          {errors.subject}
+                        </p>
+                      )}
                     </div>
+
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">Mensagem *</label>
+                      <label className="block text-gray-700 font-semibold mb-2">
+                        Mensagem *
+                      </label>
                       <Textarea
                         value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full min-h-[150px]"
+                        onChange={handleFieldChange('message')}
+                        className={`w-full min-h-[150px] ${errors.message ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                         placeholder="Conte-nos como podemos ajudar..."
-                        required
                       />
+                      {errors.message && (
+                        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                          <AlertCircle className="h-3 w-3" />
+                          {errors.message}
+                        </p>
+                      )}
                     </div>
+
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-[#00B74F] hover:bg-[#00A376] text-white text-lg py-6 group"
+                      className="w-full bg-[#00B74F] hover:bg-[#00A376] text-white text-lg py-6 group disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
-                      <Send className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      {!isSubmitting && <Send className="ml-2 group-hover:translate-x-1 transition-transform" />}
                     </Button>
                   </form>
                 </div>
