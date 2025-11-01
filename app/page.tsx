@@ -39,6 +39,7 @@ import { usePathname } from "next/navigation";
 import FeatureCard from "@/components/FeatureCard";
 import { FaWhatsapp } from "react-icons/fa6";
 import { ClientsFeedback } from "@/components/screens/home/clients-feedback";
+import CampaignBadge from "@/components/CampaignBadge";
 
 
 export default function Home() {
@@ -163,9 +164,7 @@ export default function Home() {
             <Link href="/contato" className={navLinkClass("/contato")}>
               Contato
             </Link>
-            <span className="inline-flex items-center rounded-full bg-pink-100 px-2.5 py-1 text-xs font-semibold text-pink-600">
-              <Ribbon className="mr-1 h-3.5 w-3.5 text-pink-500" /> Outubro Rosa
-            </span>
+            <CampaignBadge month="novembro" />
           </div>
 
           <button
@@ -224,10 +223,7 @@ export default function Home() {
               >
                 Contato
               </Link>
-              <span className="mt-2 inline-flex w-fit items-center rounded-full bg-pink-100 px-2.5 py-1 text-xs font-semibold text-pink-600">
-                <Ribbon className="mr-1 h-3.5 w-3.5 text-pink-500" /> Outubro
-                Rosa
-              </span>
+              <CampaignBadge month="novembro" size="sm" />
             </div>
           </motion.div>
         )}
@@ -430,7 +426,7 @@ export default function Home() {
                   size="lg"
                   className="group relative overflow-hidden bg-[#00B74F] px-6 py-3 sm:px-8 sm:py-4 text-white hover:bg-[#00A376] transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
-                  <a href="#contato" aria-label="Fale conosco">
+                  <a href="/contato" aria-label="Fale conosco">
                     <motion.span
                       className="relative z-10 flex items-center"
                       initial={{ opacity: 0, x: -20 }}
@@ -472,7 +468,7 @@ export default function Home() {
                   className="group relative overflow-hidden border-2 border-[#00B74F] px-6 py-3 sm:px-8 sm:py-4 text-[#00B74F] hover:bg-[#00B74F] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <a
-                    href="https://wa.me/5551980111096"
+                    href="https://wa.me/555136671096"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Abrir WhatsApp"
@@ -637,7 +633,7 @@ export default function Home() {
                     asChild
                     className="bg-white text-[#00B74F] hover:bg-white/90"
                   >
-                    <Link href="https://wa.me/5551980111096">Saiba mais</Link>
+                    <Link href="https://wa.me/555136671096">Saiba mais</Link>
                   </Button>
                 </div>
               </div>

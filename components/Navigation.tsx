@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Menu, X, Ribbon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import CampaignBadge from './CampaignBadge';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,9 +53,7 @@ export default function Navigation() {
             <Link href="/servicos" className={navLinkClass('/servicos')}>Serviços</Link>
             <Link href="/clientes" className={navLinkClass('/clientes')}>Clientes</Link>
             <Link href="/contato" className={navLinkClass('/contato')}>Contato</Link>
-            <span className="inline-flex items-center rounded-full bg-pink-100 px-2.5 py-1 text-xs font-semibold text-pink-600">
-              <Ribbon className="mr-1 h-4 w-4 text-pink-500" /> Outubro Rosa
-            </span>
+            <CampaignBadge month="novembro" />
           </div>
 
           <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -74,9 +73,9 @@ export default function Navigation() {
               <Link href="/servicos" className={navLinkClass('/servicos')} onClick={() => setIsMenuOpen(false)}>Serviços</Link>
               <Link href="/clientes" className={navLinkClass('/clientes')} onClick={() => setIsMenuOpen(false)}>Clientes</Link>
               <Link href="/contato" className={navLinkClass('/contato')} onClick={() => setIsMenuOpen(false)}>Contato</Link>
-              <span className="mt-2 inline-flex w-fit items-center rounded-full bg-pink-100 px-2.5 py-1 text-xs font-semibold text-pink-600">
-                <Ribbon className="mr-1 h-3.5 w-3.5 text-pink-500" /> Outubro Rosa
-              </span>
+              <div className="mt-2">
+                <CampaignBadge month="novembro" size="sm" />
+              </div>
             </div>
           </motion.div>
         )}
