@@ -185,7 +185,7 @@ export default function Contato() {
                       size="lg"
                       className="bg-white text-[#00B74F] hover:bg-gray-100 w-full"
                     >
-                      <a href="https://wa.me/5551980111096" target="_blank" rel="noopener noreferrer">
+                      <a href="https://wa.me/555136671096" target="_blank" rel="noopener noreferrer">
                         <FaWhatsapp className="mr-2" />
                         Chamar no WhatsApp
                       </a>

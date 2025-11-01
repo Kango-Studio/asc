@@ -139,7 +139,7 @@ export const ClientsFeedback = ({ title, titleSuffix}: ClientsFeedbackProps ) =>
               size="lg"
               className="bg-white text-[#00B74F] hover:bg-gray-100 text-lg px-12 py-6"
             >
-              <Link href="/contato">Entre em Contato</Link>
+              <Link href="https://wa.me/555136671096" target="_blank" rel="noopener noreferrer">Entre em Contato</Link>
             </Button>
           </div>
         </div>

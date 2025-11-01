@@ -58,7 +58,7 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-300">
               <li className="flex items-center gap-2"><FaWhatsapp className="h-5 w-5 text-[#9AE6B4]" /> (51) 3667-1096</li>
               <li className="flex items-center gap-2"><Phone className="h-5 w-5 text-[#9AE6B4]" /> (51) 98011-1096</li>
-              <li className="flex items-center gap-2"><Mail className="h-5 w-5 text-[#9AE6B4]" /> <a href="mailto:atendimento@asccontabilidade.srv.br" className="hover:text-white">atendimento@ascassessoria.com.br</a></li>
+              <li className="flex items-center gap-2"><Mail className="h-5 w-5 text-[#9AE6B4]" /> <a href="mailto:atendimento@asccontabilidade.srv.br" className="hover:text-white">atendimento@asccontabilidade.srv.br</a></li>
               <li className="flex items-center gap-2"><Clock className="h-5 w-5 text-[#9AE6B4]" /> Seg–Sex: 8h–12h | 13h30–18h</li>
               <li className="flex items-center gap-2"><Instagram className="h-5 w-5 text-[#9AE6B4]" /> <a href="https://instagram.com/ascassessoriacontabil" target="_blank" rel="noopener noreferrer" className="hover:text-white">@ascassessoriacontabil</a></li>
             </ul>
