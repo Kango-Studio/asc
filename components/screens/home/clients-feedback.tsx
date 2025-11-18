@@ -5,24 +5,18 @@ import { staggerContainer, fadeInUp } from "@/lib/animations"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 import { benefits } from "@/constants/benefits";
-
- const clients = [
-    "Leffa Móveis",
-    "Apara Barro Dema",
-    "Comércio de Bananas Borges",
-    "Nil Diesel",
-    "Traffic Control",
-    "LDO Business",
- ];
+import { clients } from "@/constants/clients";
 
  interface ClientsFeedbackProps {
   title: string;
   titleSuffix: string;
+  isClientPage?: boolean;
  }
   
-export const ClientsFeedback = ({ title, titleSuffix}: ClientsFeedbackProps ) => {
+export const ClientsFeedback = ({ title, titleSuffix, isClientPage = true }: ClientsFeedbackProps ) => {
   const [clientsCarouselApi, setClientsCarouselApi] =
     useState<CarouselApi | null>(null);
 
@@ -38,56 +32,61 @@ export const ClientsFeedback = ({ title, titleSuffix}: ClientsFeedbackProps ) =>
 
   return (
     <>
-    <section
-        id="clientes"
-        className="py-20 bg-gradient-to-br from-[#00B74F]/5 via-white to-pink-50/30"
-      >
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeInUp} className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Nossos <span className="text-[#00B74F]">Clientes</span>
-              </h2>
-              <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-6" />
-              <p className="text-xl text-gray-600">
-                Empresas que confiam em nosso trabalho
-              </p>
-            </motion.div>
-
-            <Carousel
-              opts={{ align: "start", loop: true }}
-              setApi={setClientsCarouselApi}
-              className="relative pb-6"
+      {isClientPage && 
+        <section
+          id="clientes"
+          className="py-20 bg-gradient-to-br from-[#00B74F]/5 via-white to-pink-50/30"
+        >
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
             >
-              <CarouselContent className="pb-2">
-                {clients.map((client, index) => (
-                  <CarouselItem
-                    key={index}
-                    className="md:basis-1/2 lg:basis-1/3"
-                  >
-                    <motion.div
-                      variants={fadeInUp}
-                      whileHover={{ scale: 1.03 }}
-                      className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100 flex items-center justify-center min-h-[120px] mb-4"
-                    >
-                      <h3 className="text-xl font-bold text-gray-900 text-center">
-                        {client}
-                      </h3>
-                    </motion.div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </motion.div>
-        </div>
-      </section>
+              <motion.div variants={fadeInUp} className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                  Nossos <span className="text-[#00B74F]">Clientes</span>
+                </h2>
+                <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-6" />
+                <p className="text-xl text-gray-600">
+                  Empresas que confiam em nosso trabalho
+                </p>
+              </motion.div>
 
-      <motion.div variants={fadeInUp} className="mb-20">
+              <Carousel
+                opts={{ align: "start", loop: true }}
+                setApi={setClientsCarouselApi}
+                className="relative pb-6"
+              >
+                <CarouselContent className="pb-2">
+                  {clients.map((client, index) => (
+                    <CarouselItem
+                      key={index}
+                      className="md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
+                    >
+                      <motion.div
+                        variants={fadeInUp}
+                        whileHover={{ scale: 1.05 }}
+                        className="p-4 transition-all flex items-center justify-center min-h-[100px] mb-4"
+                      >
+                        <Image
+                          src={client.logo}
+                          alt={client.name}
+                          width={100}
+                          height={100}
+                          className="object-contain w-full h-full max-h-16"
+                        />
+                      </motion.div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </motion.div>
+          </div>
+        </section>
+      }
+      {/* <motion.div variants={fadeInUp} className="mb-20">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-4">
           {title}
           <span className="text-[#00B74F]"> {titleSuffix}</span>
@@ -97,7 +96,7 @@ export const ClientsFeedback = ({ title, titleSuffix}: ClientsFeedbackProps ) =>
         <div className="w-full mx-auto">
           <StaggerTestimonials /> 
         </div>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div variants={fadeInUp} className="mb-16">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-12">
