@@ -7,7 +7,7 @@ export const clients = [
     {
       name: "Apara Barro Dema",
       segment: "Indústria Cerâmica",
-      logo: "/clients/dema.jpg",
+      logo: "/clients/dema-2.png",
     },
     {
       name: "Bananas Borges",

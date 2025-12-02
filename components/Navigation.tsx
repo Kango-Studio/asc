@@ -53,7 +53,7 @@ export default function Navigation() {
             <Link href="/servicos" className={navLinkClass('/servicos')}>Serviços</Link>
             <Link href="/clientes" className={navLinkClass('/clientes')}>Clientes</Link>
             <Link href="/contato" className={navLinkClass('/contato')}>Contato</Link>
-            <CampaignBadge month="novembro" />
+            {/* <CampaignBadge month="dezembro" /> */}
           </div>
 
           <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -73,9 +73,9 @@ export default function Navigation() {
               <Link href="/servicos" className={navLinkClass('/servicos')} onClick={() => setIsMenuOpen(false)}>Serviços</Link>
               <Link href="/clientes" className={navLinkClass('/clientes')} onClick={() => setIsMenuOpen(false)}>Clientes</Link>
               <Link href="/contato" className={navLinkClass('/contato')} onClick={() => setIsMenuOpen(false)}>Contato</Link>
-              <div className="mt-2">
-                <CampaignBadge month="novembro" size="sm" />
-              </div>
+              {/* <div className="mt-2">
+                <CampaignBadge month="dezembro" size="sm" />
+              </div> */}
             </div>
           </motion.div>
         )}
