@@ -41,7 +41,7 @@ export const HeroVideo = () => {
         <source src="/videos/mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
         <source src="/videos/site.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-black/20" />
+      {/* <div className="absolute inset-0 bg-black/20" /> */}
     </section>
   )
 }
