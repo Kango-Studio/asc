@@ -42,6 +42,8 @@ import { ClientsFeedback } from "@/components/screens/home/clients-feedback";
 import CampaignBadge from "@/components/CampaignBadge";
 import { Herotext } from "@/components/screens/home/herto-text";
 import { HeroVideo } from "@/components/screens/home/hero-video";
+import { HolidayModal } from "@/components/HolidayModal";
+
 
 
 export default function Home() {
@@ -117,6 +119,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <HolidayModal />
+
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           pathname === "/"
