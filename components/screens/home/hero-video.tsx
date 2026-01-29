@@ -13,9 +13,7 @@ export const HeroVideo = () => {
       try {
         video.muted = true;
         await video.play();
-      } catch (error) {
-        console.log("Autoplay blocked:", error);
-      }
+      } catch {}
     };
 
     if (video.readyState >= 2) {
@@ -29,12 +27,15 @@ export const HeroVideo = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden"
-      style={{ minHeight: "100svh" }}
+      className="relative overflow-hidden"
+      style={{
+        minHeight: "100svh",
+        aspectRatio: "16 / 9",
+      }}
     >
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="hero-video absolute top-1/2 left-1/2 min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover"
         autoPlay
         loop
         muted

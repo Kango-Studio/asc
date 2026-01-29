@@ -92,3 +92,11 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@media (min-aspect-ratio: 21/9) {
+  .hero-video {
+    width: 120%;
+    height: 120%;
+  }
+}
+
