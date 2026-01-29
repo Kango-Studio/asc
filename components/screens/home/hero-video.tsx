@@ -9,13 +9,12 @@ export const HeroVideo = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Force play ensures video starts even if the browser blocked the attribute initially
     const playVideo = async () => {
       try {
-        video.muted = true; // Ensure it is muted to allow autoplay
+        video.muted = true;
         await video.play();
       } catch (error) {
-        console.log("Autoplay blocked/failed:", error);
+        console.log("Autoplay blocked:", error);
       }
     };
 
@@ -28,20 +27,23 @@ export const HeroVideo = () => {
   }, []);
 
   return (
-    <section id="home" className="relative h-screen overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen overflow-hidden"
+      style={{ minHeight: "100svh" }}
+    >
       <video
         ref={videoRef}
-        className="w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
       >
         <source src="/videos/mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
         <source src="/videos/site.mp4" type="video/mp4" />
       </video>
-      {/* <div className="absolute inset-0 bg-black/20" /> */}
     </section>
-  )
-}
+  );
+};

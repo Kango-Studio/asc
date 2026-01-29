@@ -73,9 +73,9 @@ export const ClientsFeedback = ({ title, titleSuffix, isClientPage = true }: Cli
                         <Image
                           src={client.logo}
                           alt={client.name}
-                          width={100}
-                          height={100}
-                          className="object-contain w-full h-full max-h-16"
+                          width={client.isLargeSize ? 150 : 100}
+                          height={client.isLargeSize ? 150 : 100}
+                          className={`object-contain w-full h-full ${client.isLargeSize ? 'max-h-24' : 'max-h-16'}`}
                         />
                       </motion.div>
                     </CarouselItem>
