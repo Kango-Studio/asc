@@ -75,7 +75,7 @@ export default function Footer() {
             <button
               type="button"
               onClick={() => window.dispatchEvent(new Event('asc:open-cookie-preferences'))}
-              className="text-left hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9AE6B4]"
+              className="cookie-preferences-trigger text-left hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9AE6B4]"
             >
               Preferências de cookies
             </button>
