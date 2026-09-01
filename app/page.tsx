@@ -170,7 +170,7 @@ export default function Home() {
             <Link href="/contato" className={navLinkClass("/contato")}>
               Contato
             </Link>
-            {/* <CampaignBadge month="novembro" /> */}
+            <CampaignBadge month="setembro" />
           </div>
 
           <button
@@ -229,7 +229,9 @@ export default function Home() {
               >
                 Contato
               </Link>
-              {/* <CampaignBadge month="novembro" size="sm" /> */}
+              <div className="pt-1">
+                <CampaignBadge month="setembro" size="sm" />
+              </div>
             </div>
           </motion.div>
         )}
