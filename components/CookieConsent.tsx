@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Consent = 'accepted' | 'rejected' | null;
 
@@ -11,6 +11,7 @@ const CONSENT_KEY = 'asc-cookie-consent-v1';
 export default function CookieConsent() {
   const [consent, setConsent] = useState<Consent>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const bannerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const savedConsent = window.localStorage.getItem(CONSENT_KEY);
@@ -22,13 +23,24 @@ export default function CookieConsent() {
       }
     }, 0);
 
-    const openPreferences = () => setIsOpen(true);
+    const openPreferences = () => {
+      setIsOpen(true);
+      window.requestAnimationFrame(() => bannerRef.current?.focus());
+    };
     window.addEventListener('asc:open-cookie-preferences', openPreferences);
     return () => {
       window.clearTimeout(initializeConsent);
       window.removeEventListener('asc:open-cookie-preferences', openPreferences);
     };
   }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.cookieBanner = isOpen ? 'open' : 'closed';
+
+    return () => {
+      delete document.documentElement.dataset.cookieBanner;
+    };
+  }, [isOpen]);
 
   const saveConsent = (value: Exclude<Consent, null>) => {
     window.localStorage.setItem(CONSENT_KEY, value);
@@ -50,6 +62,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       {isOpen && (
         <section
+          ref={bannerRef}
+          tabIndex={-1}
           className="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-4xl rounded-xl bg-white px-4 py-4 text-gray-900 shadow-[0_12px_36px_rgba(15,17,21,0.16)] sm:inset-x-6 sm:bottom-6 sm:px-5"
           aria-label="Preferências de cookies"
           aria-live="polite"
