@@ -8,8 +8,19 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-* {
+html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background: #00b74f;
+  color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {

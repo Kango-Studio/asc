@@ -1,16 +1,16 @@
 import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site';
+
+export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://www.ascassessoriacontabil.com.br';
-  const now = new Date();
-
   return [
-    { url: `${base}/`, lastModified: now, changeFrequency: 'weekly', priority: 1 },
-    { url: `${base}/sobre`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/servicos`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/clientes`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${base}/contato`, lastModified: now, changeFrequency: 'yearly', priority: 0.7 },
+    { url: `${SITE_URL}/`, changeFrequency: 'weekly', priority: 1 },
+    { url: `${SITE_URL}/sobre`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${SITE_URL}/servicos`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${SITE_URL}/clientes`, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${SITE_URL}/contato`, changeFrequency: 'yearly', priority: 0.7 },
+    { url: `${SITE_URL}/politica-privacidade`, changeFrequency: 'yearly', priority: 0.2 },
+    { url: `${SITE_URL}/termos-uso`, changeFrequency: 'yearly', priority: 0.2 },
   ];
 }
-
-

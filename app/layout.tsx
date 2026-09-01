@@ -1,32 +1,32 @@
 import './globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
-
-const inter = Inter({ subsets: ['latin'] });
+import Providers from '@/components/Providers';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.asc.srv.br'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'ASC Assessoria Contábil - Desde 2014',
     template: '%s | ASC Assessoria Contábil'
   },
-  description: 'Atendimento ágil e desburocratizado com linguagem facilitada para entendimento da contabilidade. Ética, sigilo e ambiente ambientalista desde 2014.',
+  description: SITE_DESCRIPTION,
   keywords: ['contabilidade', 'assessoria contábil', 'abertura de empresas', 'departamento fiscal', 'folha de pagamento', 'societário', 'certificado digital', 'assessoria jurídica'],
   alternates: {
     canonical: '/'
   },
   openGraph: {
     type: 'website',
+    locale: 'pt_BR',
     url: '/',
-    siteName: 'ASC Assessoria Contábil',
+    siteName: SITE_NAME,
     title: 'ASC Assessoria Contábil - Desde 2014',
     description: 'Contabilidade descomplicada e atendimento ágil para sua empresa.',
-    images: [{ url: '/logo-horizontal-preto.png', width: 1200, height: 630, alt: 'ASC Assessoria Contábil' }]
+    images: [{ url: '/logo-horizontal-preto.png', width: 1024, height: 236, alt: 'ASC Assessoria Contábil' }]
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'ASC Assessoria Contábil - Desde 2014',
     description: 'Contabilidade descomplicada e atendimento ágil para sua empresa.',
     images: ['/logo-horizontal-preto.png']
@@ -46,8 +46,14 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
-  themeColor: '#00B74F',
   manifest: '/site.webmanifest'
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#00B74F',
 };
 
 export default function RootLayout({
@@ -57,39 +63,36 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className}>
-        {/* Google Tag Manager */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PJLVMXX');`
-          }}
-        />
-        {/* End Google Tag Manager */}
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PJLVMXX"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-        {/* End Google Tag Manager (noscript) */}
-        {children}
+      <body>
+        <a
+          href="#main-content"
+          className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-md bg-white px-4 py-3 font-semibold text-gray-900 shadow-lg transition-transform focus:translate-y-0"
+        >
+          Ir para o conteúdo principal
+        </a>
+        <Providers>
+          <main id="main-content" tabIndex={-1}>
+            {children}
+          </main>
+          <Footer />
+          <FloatingWhatsApp />
+        </Providers>
         {/* JSON-LD Organization */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'ASC Assessoria Contábil',
-              url: 'https://www.asc.srv.br',
-              logo: 'https://www.asc.srv.br/logo-horizontal-preto.png',
+              '@type': ['Organization', 'AccountingService'],
+              name: SITE_NAME,
+              url: SITE_URL,
+              logo: `${SITE_URL}/logo-horizontal-preto.png`,
+              description: SITE_DESCRIPTION,
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Avenida Padre Rizzieri Delai, 705, sala 03, Centro',
+                addressCountry: 'BR',
+              },
               sameAs: [
                 'https://instagram.com/ascassessoriacontabil'
               ],
@@ -103,8 +106,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             })
           }}
         />
-        <Footer />
-        <FloatingWhatsApp />
       </body>
     </html>
   );

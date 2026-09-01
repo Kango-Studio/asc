@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, Lock, Eye, FileText, Users, Database } from 'lucide-react';
+import { Shield, Lock, Eye, Users, Database } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
@@ -75,7 +75,7 @@ export default function PoliticaPrivacidade() {
 
               <div className="relative z-10">
                 <div className="mb-8">
-                  <p className="text-sm text-gray-500 mb-4">Última atualização: {new Date().toLocaleDateString('pt-BR')}</p>
+                  <p className="text-sm text-gray-500 mb-4">Última atualização: 1º de setembro de 2026</p>
                   
                   <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">1. Introdução</h2>
                   <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
@@ -138,7 +138,7 @@ export default function PoliticaPrivacidade() {
                   </p>
                   <div className="bg-[#00B74F]/10 p-6 rounded-2xl">
                     <p className="text-base sm:text-lg text-gray-700 mb-2">
-                      <strong>E-mail:</strong> atendimento@ascassessoria.com.br
+                      <strong>E-mail:</strong> atendimento@asccontabilidade.srv.br
                     </p>
                     <p className="text-base sm:text-lg text-gray-700 mb-2">
                       <strong>Telefone:</strong> (51) 98011-1096
