@@ -19,19 +19,18 @@ export const HeroVideo = () => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden w-full"
-      style={{ height: "100svh" }}
+      className="hero-video-shell relative w-full overflow-hidden bg-black"
+      aria-label="Apresentação da ASC Assessoria Contábil"
     >
       <video
         ref={videoRef}
-        key="hero-video-player"
-        className="absolute top-1/2 left-1/2 min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover"
+        className="hero-video absolute inset-0 block h-full w-full object-cover object-center"
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        poster="/images/fallback-image.jpg"
+        aria-hidden="true"
       />
     </section>
   );
