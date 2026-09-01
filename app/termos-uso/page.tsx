@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FileText, Scale, CheckCircle, AlertTriangle, Users, Shield } from 'lucide-react';
+import { Scale, CheckCircle, AlertTriangle, Users, Shield } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
@@ -75,7 +75,7 @@ export default function TermosUso() {
 
               <div className="relative z-10">
                 <div className="mb-8">
-                  <p className="text-sm text-gray-500 mb-4">Última atualização: {new Date().toLocaleDateString('pt-BR')}</p>
+                  <p className="text-sm text-gray-500 mb-4">Última atualização: 1º de setembro de 2026</p>
                   
                   <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">1. Aceitação dos Termos</h2>
                   <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
@@ -166,13 +166,13 @@ export default function TermosUso() {
                 </div>
 
                 <div className="mb-8">
-                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">6. Contato</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">9. Contato</h2>
                   <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-4">
                     Para exercer seus direitos ou esclarecer dúvidas sobre esta política, entre em contato:
                   </p>
                   <div className="bg-[#00B74F]/10 p-6 rounded-2xl">
                     <p className="text-base sm:text-lg text-gray-700 mb-2">
-                      <strong>E-mail:</strong> atendimento@ascassessoria.com.br
+                      <strong>E-mail:</strong> atendimento@asccontabilidade.srv.br
                     </p>
                     <p className="text-base sm:text-lg text-gray-700 mb-2">
                       <strong>Telefone:</strong> (51) 98011-1096

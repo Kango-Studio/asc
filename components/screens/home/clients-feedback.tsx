@@ -1,4 +1,3 @@
-import { StaggerTestimonials } from "@/components/StaggerTestimonials"
 import { Button } from "@/components/ui/button"
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { staggerContainer, fadeInUp } from "@/lib/animations"
@@ -11,12 +10,10 @@ import { benefits } from "@/constants/benefits";
 import { clients } from "@/constants/clients";
 
  interface ClientsFeedbackProps {
-  title: string;
-  titleSuffix: string;
   isClientPage?: boolean;
  }
   
-export const ClientsFeedback = ({ title, titleSuffix, isClientPage = true }: ClientsFeedbackProps ) => {
+export const ClientsFeedback = ({ isClientPage = true }: ClientsFeedbackProps ) => {
   const [clientsCarouselApi, setClientsCarouselApi] =
     useState<CarouselApi | null>(null);
 

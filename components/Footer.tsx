@@ -31,7 +31,7 @@ export default function Footer() {
           <div>
             <h4 className="mb-4 text-lg font-semibold text-[#9AE6B4]">Navegação</h4>
             <ul className="space-y-3 text-gray-300">
-              <li><a href="/" className="hover:text-white">Home</a></li>
+              <li><Link href="/" className="hover:text-white">Home</Link></li>
               <li><Link href="/sobre" className="hover:text-white">Sobre</Link></li>
               <li><Link href="/servicos" className="hover:text-white">Serviços</Link></li>
               <li><Link href="/clientes" className="hover:text-white">Clientes</Link></li>
@@ -69,14 +69,19 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 text-sm text-gray-400 md:flex-row">
           <p>© {new Date().getFullYear()} ASC Assessoria Contábil. Todos os direitos reservados.</p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:justify-end">
             <Link href="/politica-privacidade" className="hover:text-white">Política de Privacidade</Link>
             <Link href="/termos-uso" className="hover:text-white">Termos de Uso</Link>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event('asc:open-cookie-preferences'))}
+              className="text-left hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9AE6B4]"
+            >
+              Preferências de cookies
+            </button>
           </div>
         </div>
       </div>
     </footer>
   );
 }
-
-

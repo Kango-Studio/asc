@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -91,9 +92,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           height: 2
         }}
       />
-      <img
+      <Image
         src={testimonial.imgSrc}
         alt={`${testimonial.by.split(',')[0]}`}
+        width={48}
+        height={56}
+        unoptimized
         className="mb-3 sm:mb-4 h-10 w-8 sm:h-12 sm:w-10 md:h-14 md:w-12 bg-gray-100 object-cover object-top"
         style={{
           boxShadow: "3px 3px 0px #ffffff"
@@ -108,7 +112,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         "text-sm sm:text-base md:text-lg font-medium leading-relaxed",
         isCenter ? "text-white" : "text-gray-900"
       )}>
-        "{testimonial.testimonial}"
+        &ldquo;{testimonial.testimonial}&rdquo;
       </h3>
       <p className={cn(
         "absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-8 right-4 sm:right-6 md:right-8 mt-2 text-xs sm:text-sm font-semibold",

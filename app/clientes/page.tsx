@@ -64,7 +64,7 @@ export default function Clientes() {
         </div>
       </section>
 
-      <ClientsFeedback title="O que nossos clientes" titleSuffix="dizem" isClientPage={false} />
+      <ClientsFeedback isClientPage={false} />
     </div>
   );
 }

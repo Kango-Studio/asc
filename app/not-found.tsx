@@ -5,7 +5,6 @@ import { Home, ArrowLeft, AlertTriangle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa6';
 
 const fadeInUp = {
@@ -47,12 +46,6 @@ const pulseAnimation = {
 
 export default function NotFound() {
   const router = useRouter();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const handleGoBack = () => {
     if (window.history.length > 1) {
       router.back();
@@ -60,8 +53,6 @@ export default function NotFound() {
       router.push('/');
     }
   };
-
-  if (!mounted) return null;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#00B74F]/10 via-white to-pink-50/20 flex items-center justify-center overflow-hidden py-20">

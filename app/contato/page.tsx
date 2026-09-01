@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, Instagram, Send, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Phone, MapPin, Clock, Instagram, Send, AlertCircle, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -36,11 +36,28 @@ interface FormErrors {
   message?: string;
 }
 
+const WHATSAPP_NUMBER = '555136671096';
+const SUBMISSION_COOLDOWN_MS = 30_000;
+const MINIMUM_FILL_TIME_MS = 2_000;
+
+const cleanForWhatsApp = (value: string) =>
+  value
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+
 export default function Contato() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
+  const [website, setWebsite] = useState('');
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const formStartedAt = useRef(0);
+  const submissionLock = useRef(false);
+
+  useEffect(() => {
+    formStartedAt.current = Date.now();
+  }, []);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -50,6 +67,8 @@ export default function Contato() {
       newErrors.name = 'Nome completo é obrigatório';
     } else if (formData.name.trim().length < 3) {
       newErrors.name = 'Nome deve ter pelo menos 3 caracteres';
+    } else if (formData.name.trim().length > 80) {
+      newErrors.name = 'Nome deve ter no máximo 80 caracteres';
     }
 
     // Validação de email
@@ -57,6 +76,8 @@ export default function Contato() {
       newErrors.email = 'E-mail é obrigatório';
     } else if (!isValidEmail(formData.email)) {
       newErrors.email = 'E-mail inválido';
+    } else if (formData.email.trim().length > 254) {
+      newErrors.email = 'E-mail muito longo';
     }
 
     // Validação de telefone (obrigatório conforme solicitado)
@@ -71,6 +92,8 @@ export default function Contato() {
       newErrors.subject = 'Assunto é obrigatório';
     } else if (formData.subject.trim().length < 3) {
       newErrors.subject = 'Assunto deve ter pelo menos 3 caracteres';
+    } else if (formData.subject.trim().length > 120) {
+      newErrors.subject = 'Assunto deve ter no máximo 120 caracteres';
     }
 
     // Validação de mensagem
@@ -78,6 +101,8 @@ export default function Contato() {
       newErrors.message = 'Mensagem é obrigatória';
     } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Mensagem deve ter pelo menos 10 caracteres';
+    } else if (formData.message.trim().length > 1000) {
+      newErrors.message = 'Mensagem deve ter no máximo 1.000 caracteres';
     }
 
     setErrors(newErrors);
@@ -101,11 +126,21 @@ export default function Contato() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitStatus(null);
 
-    // Validação antes de enviar
+    if (submissionLock.current) return;
+
+    // Honeypot e tempo mínimo impedem submissões automatizadas simples.
+    if (website || Date.now() - formStartedAt.current < MINIMUM_FILL_TIME_MS) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Não foi possível validar o envio. Aguarde um instante e tente novamente.'
+      });
+      return;
+    }
+
     if (!validateForm()) {
       setSubmitStatus({
         type: 'error',
@@ -114,36 +149,54 @@ export default function Contato() {
       return;
     }
 
+    const lastSubmission = Number(
+      window.localStorage.getItem('asc-contact-last-submission') || 0
+    );
+    if (Date.now() - lastSubmission < SUBMISSION_COOLDOWN_MS) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Aguarde 30 segundos antes de abrir uma nova mensagem.'
+      });
+      return;
+    }
+
+    submissionLock.current = true;
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contato', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const message = [
+        '*Novo contato pelo site da ASC*',
+        '',
+        `*Nome:* ${cleanForWhatsApp(formData.name)}`,
+        `*E-mail:* ${cleanForWhatsApp(formData.email).toLowerCase()}`,
+        `*Telefone:* ${cleanForWhatsApp(formData.phone)}`,
+        `*Assunto:* ${cleanForWhatsApp(formData.subject)}`,
+        '',
+        '*Mensagem:*',
+        cleanForWhatsApp(formData.message),
+      ].join('\n');
 
-      const data = await response.json();
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.localStorage.setItem('asc-contact-last-submission', String(Date.now()));
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Erro ao enviar mensagem');
-      }
+      const whatsappWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      if (!whatsappWindow) window.location.assign(whatsappUrl);
 
-      // Sucesso
       setSubmitStatus({
         type: 'success',
-        message: 'Mensagem enviada com sucesso! Em breve entraremos em contato.'
+        message: 'WhatsApp aberto com sua mensagem. Revise o texto e toque em enviar para concluir.'
       });
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setWebsite('');
       setErrors({});
-    } catch (error) {
+      formStartedAt.current = Date.now();
+    } catch {
       setSubmitStatus({
         type: 'error',
-        message: error instanceof Error ? error.message : 'Erro ao enviar mensagem. Tente novamente mais tarde.'
+        message: 'Não foi possível abrir o WhatsApp. Tente novamente ou use o botão de contato ao lado.'
       });
     } finally {
+      submissionLock.current = false;
       setIsSubmitting(false);
     }
   };
@@ -211,7 +264,19 @@ export default function Contato() {
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">
                     Envie sua mensagem
                   </h2>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                    <div className="absolute left-[-9999px] h-px w-px overflow-hidden" aria-hidden="true">
+                      <label htmlFor="contact-website">Website</label>
+                      <input
+                        id="contact-website"
+                        name="website"
+                        type="text"
+                        value={website}
+                        onChange={(event) => setWebsite(event.target.value)}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
                     {submitStatus && (
                       <Alert variant={submitStatus.type === 'error' ? 'destructive' : 'default'} className={submitStatus.type === 'success' ? 'bg-green-50 border-green-200 text-green-800' : ''}>
                         {submitStatus.type === 'success' ? (
@@ -226,18 +291,25 @@ export default function Contato() {
                     )}
 
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label htmlFor="contact-name" className="block text-gray-700 font-semibold mb-2">
                         Nome completo *
                       </label>
                       <Input
+                        id="contact-name"
+                        name="name"
                         type="text"
                         value={formData.name}
                         onChange={handleFieldChange('name')}
                         className={`w-full ${errors.name ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                         placeholder="Seu nome"
+                        autoComplete="name"
+                        maxLength={80}
+                        required
+                        aria-invalid={Boolean(errors.name)}
+                        aria-describedby={errors.name ? 'contact-name-error' : undefined}
                       />
                       {errors.name && (
-                        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <p id="contact-name-error" className="mt-1 text-sm text-red-600 flex items-center gap-1">
                           <AlertCircle className="h-3 w-3" />
                           {errors.name}
                         </p>
@@ -245,18 +317,25 @@ export default function Contato() {
                     </div>
 
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label htmlFor="contact-email" className="block text-gray-700 font-semibold mb-2">
                         E-mail *
                       </label>
                       <Input
+                        id="contact-email"
+                        name="email"
                         type="email"
                         value={formData.email}
                         onChange={handleFieldChange('email')}
                         className={`w-full ${errors.email ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                         placeholder="seu@email.com"
+                        autoComplete="email"
+                        maxLength={254}
+                        required
+                        aria-invalid={Boolean(errors.email)}
+                        aria-describedby={errors.email ? 'contact-email-error' : undefined}
                       />
                       {errors.email && (
-                        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <p id="contact-email-error" className="mt-1 text-sm text-red-600 flex items-center gap-1">
                           <AlertCircle className="h-3 w-3" />
                           {errors.email}
                         </p>
@@ -264,19 +343,26 @@ export default function Contato() {
                     </div>
 
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label htmlFor="contact-phone" className="block text-gray-700 font-semibold mb-2">
                         Telefone *
                       </label>
                       <Input
+                        id="contact-phone"
+                        name="phone"
                         type="tel"
                         value={formData.phone}
                         onChange={handlePhoneChange}
                         className={`w-full ${errors.phone ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                         placeholder="(00) 00000-0000"
                         maxLength={15}
+                        autoComplete="tel"
+                        inputMode="tel"
+                        required
+                        aria-invalid={Boolean(errors.phone)}
+                        aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
                       />
                       {errors.phone && (
-                        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <p id="contact-phone-error" className="mt-1 text-sm text-red-600 flex items-center gap-1">
                           <AlertCircle className="h-3 w-3" />
                           {errors.phone}
                         </p>
@@ -284,18 +370,24 @@ export default function Contato() {
                     </div>
 
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label htmlFor="contact-subject" className="block text-gray-700 font-semibold mb-2">
                         Assunto *
                       </label>
                       <Input
+                        id="contact-subject"
+                        name="subject"
                         type="text"
                         value={formData.subject}
                         onChange={handleFieldChange('subject')}
                         className={`w-full ${errors.subject ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                         placeholder="Sobre o que deseja falar?"
+                        maxLength={120}
+                        required
+                        aria-invalid={Boolean(errors.subject)}
+                        aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
                       />
                       {errors.subject && (
-                        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <p id="contact-subject-error" className="mt-1 text-sm text-red-600 flex items-center gap-1">
                           <AlertCircle className="h-3 w-3" />
                           {errors.subject}
                         </p>
@@ -303,17 +395,26 @@ export default function Contato() {
                     </div>
 
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label htmlFor="contact-message" className="block text-gray-700 font-semibold mb-2">
                         Mensagem *
                       </label>
                       <Textarea
+                        id="contact-message"
+                        name="message"
                         value={formData.message}
                         onChange={handleFieldChange('message')}
                         className={`w-full min-h-[150px] ${errors.message ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                         placeholder="Conte-nos como podemos ajudar..."
+                        maxLength={1000}
+                        required
+                        aria-invalid={Boolean(errors.message)}
+                        aria-describedby={errors.message ? 'contact-message-error' : 'contact-message-limit'}
                       />
+                      <p id="contact-message-limit" className="mt-1 text-right text-xs text-gray-500">
+                        {formData.message.length}/1.000
+                      </p>
                       {errors.message && (
-                        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <p id="contact-message-error" className="mt-1 text-sm text-red-600 flex items-center gap-1">
                           <AlertCircle className="h-3 w-3" />
                           {errors.message}
                         </p>
@@ -325,7 +426,7 @@ export default function Contato() {
                       disabled={isSubmitting}
                       className="w-full bg-[#00B74F] hover:bg-[#00A376] text-white text-lg py-6 group disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
+                      {isSubmitting ? 'Abrindo WhatsApp...' : 'Continuar no WhatsApp'}
                       {!isSubmitting && <Send className="ml-2 group-hover:translate-x-1 transition-transform" />}
                     </Button>
                   </form>
@@ -402,6 +503,7 @@ export default function Contato() {
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="aspect-video w-full">
                   <iframe
+                    title="Localização da ASC Assessoria Contábil"
                     src="https://www.google.com/maps?q=Avenida+Padre+Rizzieri+Delai+705,+sala+03+–+Centro&output=embed"
                     width="100%"
                     height="100%"

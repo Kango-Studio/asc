@@ -13,7 +13,6 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { scrollY } = useScroll();
-  const headerOpacity = useTransform(scrollY, [0, 100], [0, 1]);
   const headerBackground = useTransform(scrollY, [0, 100], ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.95)']);
   const headerShadow = useTransform(scrollY, [0, 100], ['0 0 0px rgba(0, 0, 0, 0)', '0 4px 20px rgba(0, 0, 0, 0.1)']);
 
@@ -30,6 +29,7 @@ export default function Navigation() {
   const linkActive = 'text-[#00B74F] font-medium';
   const linkInactive = 'text-gray-700 hover:text-[#00B74F]';
   const navLinkClass = (path: string) => `${linkBase} ${pathname === path ? linkActive : linkInactive}`;
+  const currentPage = (path: string) => pathname === path ? 'page' as const : undefined;
 
   return (
     <>
@@ -42,21 +42,28 @@ export default function Navigation() {
           boxShadow: headerShadow
         }}
       >
-        <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Image src="/logo-horizontal-preto.png" alt="ASC Logo" width={280} height={280} className="object-contain" />
+        <nav aria-label="Navegação principal" className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2" aria-label="ASC Assessoria Contábil — página inicial">
+            <Image src="/logo-horizontal-preto.png" alt="" width={280} height={280} className="object-contain" priority />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className={navLinkClass('/')}>Início</Link>
-            <Link href="/sobre" className={navLinkClass('/sobre')}>Sobre</Link>
-            <Link href="/servicos" className={navLinkClass('/servicos')}>Serviços</Link>
-            <Link href="/clientes" className={navLinkClass('/clientes')}>Clientes</Link>
-            <Link href="/contato" className={navLinkClass('/contato')}>Contato</Link>
+            <Link href="/" className={navLinkClass('/')} aria-current={currentPage('/')}>Início</Link>
+            <Link href="/sobre" className={navLinkClass('/sobre')} aria-current={currentPage('/sobre')}>Sobre</Link>
+            <Link href="/servicos" className={navLinkClass('/servicos')} aria-current={currentPage('/servicos')}>Serviços</Link>
+            <Link href="/clientes" className={navLinkClass('/clientes')} aria-current={currentPage('/clientes')}>Clientes</Link>
+            <Link href="/contato" className={navLinkClass('/contato')} aria-current={currentPage('/contato')}>Contato</Link>
             <CampaignBadge month="setembro" />
           </div>
 
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button
+            type="button"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-md md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B74F]"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+          >
             {isMenuOpen ? <X className="text-[#00B74F]" /> : <Menu className="text-[#00B74F]" />}
           </button>
         </nav>
@@ -65,6 +72,7 @@ export default function Navigation() {
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
+            id="mobile-navigation"
             className="md:hidden bg-white/95 backdrop-blur-sm border-t"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">

@@ -1,16 +1,10 @@
 "use client";
-import { benefits } from "@/constants/benefits";
-import { StaggerTestimonials } from "@/components/StaggerTestimonials";
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   fadeInUp,
   staggerContainer,
   scaleIn,
-  slideInLeft,
-  slideInRight,
-  typewriterEffect,
-  floatingAnimation,
 } from "@/lib/animations";
 import {
   Building2,
@@ -20,29 +14,16 @@ import {
   FileCheck,
   Scale,
   CreditCard,
-  ChevronDown,
   Menu,
   X,
-  ArrowRight,
-  CheckCircle,
-  Award,
-  Shield,
-  Heart,
-  Leaf,
-  Calendar,
-  Ribbon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import FeatureCard from "@/components/FeatureCard";
-import { FaWhatsapp } from "react-icons/fa6";
 import { ClientsFeedback } from "@/components/screens/home/clients-feedback";
 import CampaignBadge from "@/components/CampaignBadge";
-import { Herotext } from "@/components/screens/home/herto-text";
 import { HeroVideo } from "@/components/screens/home/hero-video";
-import { HolidayModal } from "@/components/HolidayModal";
 
 
 
@@ -136,12 +117,12 @@ export default function Home() {
             pathname === "/" ? headerShadow : "0 4px 20px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <nav aria-label="Navegação principal" className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Link href="/">
+            <Link href="/" aria-label="ASC Assessoria Contábil — página inicial">
               <Image
                 src="/logo-horizontal-preto.png"
-                alt="ASC Logo"
+                alt=""
                 width={280}
                 height={280}
                 className="object-contain"
@@ -174,8 +155,12 @@ export default function Home() {
           </div>
 
           <button
-            className="md:hidden"
+            type="button"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-md md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B74F]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="home-mobile-navigation"
           >
             {isMenuOpen ? (
               <X className="text-[#00B74F]" />
@@ -187,6 +172,7 @@ export default function Home() {
 
         {isMenuOpen && (
           <motion.div
+            id="home-mobile-navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             className="md:hidden bg-white border-t"
@@ -349,7 +335,7 @@ export default function Home() {
         </div>
       </section>
 
-      <ClientsFeedback title="Veja o que nossos parceiros" titleSuffix="dizem" />
+      <ClientsFeedback />
     </div>
   );
 }

@@ -4,10 +4,6 @@ import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, PartyPopper, ArrowRight } from "lucide-react";
@@ -15,10 +11,7 @@ import { motion } from "framer-motion";
 
 export function HolidayModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
-    setMounted(true);
     const hasSeenModal = localStorage.getItem("hasSeenHolidayModal2025");
     if (!hasSeenModal) {
       const timer = setTimeout(() => {
@@ -32,8 +25,6 @@ export function HolidayModal() {
     setIsOpen(false);
     localStorage.setItem("hasSeenHolidayModal2025", "true");
   };
-
-  if (!mounted) return null;
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
@@ -136,4 +127,3 @@ export function HolidayModal() {
     </Dialog>
   );
 }
-
