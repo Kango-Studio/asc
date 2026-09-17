@@ -26,16 +26,16 @@ export default function Navigation() {
   }, []);
 
   const linkBase = 'transition-colors';
-  const linkActive = 'text-[#00B74F] font-medium';
-  const linkInactive = 'text-gray-700 hover:text-[#00B74F]';
+  const linkActive = 'text-brand-strong font-medium';
+  const linkInactive = 'text-gray-700 hover:text-brand-strong';
   const navLinkClass = (path: string) => `${linkBase} ${pathname === path ? linkActive : linkInactive}`;
   const currentPage = (path: string) => pathname === path ? 'page' as const : undefined;
 
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
-          isScrolled ? 'bg-white/95 shadow-lg' : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-[backdrop-filter,box-shadow] duration-300 ${
+          isScrolled ? 'backdrop-blur-md shadow-lg' : ''
         }`}
         style={{ 
           backgroundColor: headerBackground,
@@ -58,13 +58,13 @@ export default function Navigation() {
 
           <button
             type="button"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-md md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B74F]"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-md md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-strong"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
           >
-            {isMenuOpen ? <X className="text-[#00B74F]" /> : <Menu className="text-[#00B74F]" />}
+            {isMenuOpen ? <X className="text-brand-strong" /> : <Menu className="text-brand-strong" />}
           </button>
         </nav>
 

@@ -14,28 +14,19 @@ export const HeroVideo = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    const src = isMobile ? "/videos/mobile-h264.mp4" : "/videos/site-h264.mp4";
-
     let active = true;
-    // Set the DOM property before play() for browsers with strict autoplay rules.
     video.muted = true;
     video.defaultMuted = true;
-    video.src = src;
+    video.src = window.matchMedia("(max-width: 767px)").matches
+      ? "/videos/mobile-web.mp4"
+      : "/videos/site-web.mp4";
     video.load();
-    video.play().catch(() => {
+    void video.play().catch(() => {
       if (active) setStatus("error");
     });
 
-    const fallbackTimer = window.setTimeout(() => {
-      setStatus((currentStatus) =>
-        currentStatus === "loading" ? "error" : currentStatus
-      );
-    }, 12000);
-
     return () => {
       active = false;
-      window.clearTimeout(fallbackTimer);
       video.pause();
       video.removeAttribute("src");
       video.load();
@@ -81,7 +72,7 @@ export const HeroVideo = () => {
 
           <Link
             href="/contato"
-            className="mt-8 inline-flex min-h-11 items-center justify-center rounded-md bg-[#00B74F] px-6 py-3 font-semibold text-white shadow-lg shadow-green-950/15 transition-colors hover:bg-[#009f45] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B74F] focus-visible:ring-offset-4"
+            className="mt-8 inline-flex min-h-11 items-center justify-center rounded-md bg-brand-strong px-6 py-3 font-semibold text-white shadow-lg shadow-green-950/15 transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-strong focus-visible:ring-offset-4"
           >
             Fale com a ASC
           </Link>
@@ -89,6 +80,7 @@ export const HeroVideo = () => {
       </div>
 
       <video
+        id="hero-presentation"
         ref={videoRef}
         className={`hero-video absolute inset-0 z-20 block h-full w-full object-cover object-center transition-opacity duration-700 motion-reduce:transition-none ${
           status === "ready" ? "opacity-100" : "pointer-events-none opacity-0"
@@ -100,7 +92,6 @@ export const HeroVideo = () => {
         preload="auto"
         onPlaying={() => setStatus("ready")}
         onWaiting={() => setStatus("loading")}
-        onPause={() => setStatus("error")}
         onError={() => setStatus("error")}
         aria-hidden="true"
       />

@@ -143,9 +143,9 @@ export default function Servicos() {
                 <Image src="/logo-padrao.png" alt="ASC Logo" width={80} height={80} className="mx-auto" />
               </Link>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                Nossos <span className="text-[#00B74F]">Serviços</span>
+                Nossos <span className="text-brand-strong">Serviços</span>
               </h1>
-              <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-6" />
+              <div className="w-24 h-1 bg-brand-strong mx-auto rounded-full mb-6" />
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Soluções completas em contabilidade para sua empresa crescer com segurança e tranquilidade
               </p>
@@ -159,7 +159,7 @@ export default function Servicos() {
                   whileHover={{ scale: 1.02 }}
                   className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 overflow-hidden group"
                 >
-                  <div className="bg-gradient-to-br from-[#00B74F] to-[#00A376] p-8 relative">
+                  <div className="bg-gradient-to-br from-brand-strong to-brand-deep p-8 relative">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-pink-200/20 rounded-full blur-2xl" />
                     <service.icon className="w-16 h-16 text-white mb-4 relative z-10 group-hover:scale-110 transition-transform" />
                     <h2 className="text-2xl font-bold text-white mb-2 relative z-10">{service.title}</h2>
@@ -171,7 +171,7 @@ export default function Servicos() {
                     <ul className="space-y-3">
                       {service.details.map((detail, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-[#00B74F] mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-brand-strong mt-0.5 flex-shrink-0" />
                           <span className="text-gray-700">{detail}</span>
                         </li>
                       ))}
@@ -192,7 +192,7 @@ export default function Servicos() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-[#00B74F] hover:bg-[#00A376] text-white text-lg px-12 py-6"
+                  className="bg-brand-strong hover:bg-brand-hover text-white text-lg px-12 py-6"
                 >
                   <Link href="/contato">
                     Fale Conosco

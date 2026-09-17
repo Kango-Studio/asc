@@ -1,0 +1,560 @@
+[
+  {
+    "width": 390,
+    "route": "/",
+    "scrollWidth": 390,
+    "overflow": [
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 748,
+        "width": 374
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 748,
+        "width": 358
+      },
+      {
+        "tag": "IMG",
+        "text": "",
+        "right": 732,
+        "width": 326
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 1122,
+        "width": 374
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 1122,
+        "width": 358
+      },
+      {
+        "tag": "IMG",
+        "text": "",
+        "right": 1106,
+        "width": 326
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 1496,
+        "width": 374
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 1496,
+        "width": 358
+      }
+    ],
+    "title": "ASC Assessoria Contábil - Desde 2014",
+    "h1": 1,
+    "ogImage": "https://asc.srv.br/logo-horizontal-preto.png",
+    "canonical": "https://asc.srv.br/",
+    "video": {
+      "width": 1080,
+      "height": 1920,
+      "paused": false
+    }
+  },
+  {
+    "width": 390,
+    "route": "/sobre",
+    "scrollWidth": 390,
+    "overflow": [],
+    "title": "Sobre a ASC | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/sobre",
+    "video": null
+  },
+  {
+    "width": 390,
+    "route": "/servicos",
+    "scrollWidth": 390,
+    "overflow": [],
+    "title": "Serviços Contábeis | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/servicos",
+    "video": null
+  },
+  {
+    "width": 390,
+    "route": "/clientes",
+    "scrollWidth": 390,
+    "overflow": [],
+    "title": "Clientes | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/clientes",
+    "video": null
+  },
+  {
+    "width": 390,
+    "route": "/contato",
+    "scrollWidth": 390,
+    "overflow": [
+      {
+        "tag": "LABEL",
+        "text": "Website",
+        "right": -9940,
+        "width": 59
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "right": -9824,
+        "width": 175
+      }
+    ],
+    "title": "Contato | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/contato",
+    "video": null
+  },
+  {
+    "width": 390,
+    "route": "/politica-privacidade",
+    "scrollWidth": 390,
+    "overflow": [],
+    "title": "Política de Privacidade | ASC Assessoria Contábil",
+    "h1": 1,
+    "ogImage": "https://asc.srv.br/logo-horizontal-preto.png",
+    "canonical": "https://asc.srv.br/politica-privacidade",
+    "video": null
+  },
+  {
+    "width": 390,
+    "route": "/termos-uso",
+    "scrollWidth": 390,
+    "overflow": [],
+    "title": "Termos de Uso | ASC Assessoria Contábil",
+    "h1": 1,
+    "ogImage": "https://asc.srv.br/logo-horizontal-preto.png",
+    "canonical": "https://asc.srv.br/termos-uso",
+    "video": null
+  },
+  {
+    "width": 768,
+    "route": "/",
+    "scrollWidth": 880,
+    "overflow": [
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 1003,
+        "width": 251
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 1003,
+        "width": 235
+      },
+      {
+        "tag": "IMG",
+        "text": "",
+        "right": 987,
+        "width": 203
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 1253,
+        "width": 251
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 1253,
+        "width": 235
+      },
+      {
+        "tag": "IMG",
+        "text": "",
+        "right": 1237,
+        "width": 203
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 1504,
+        "width": 251
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 1504,
+        "width": 235
+      }
+    ],
+    "title": "ASC Assessoria Contábil - Desde 2014",
+    "h1": 1,
+    "ogImage": "https://asc.srv.br/logo-horizontal-preto.png",
+    "canonical": "https://asc.srv.br/",
+    "video": {
+      "width": 1920,
+      "height": 1080,
+      "paused": false
+    }
+  },
+  {
+    "width": 768,
+    "route": "/sobre",
+    "scrollWidth": 880,
+    "overflow": [
+      {
+        "tag": "A",
+        "text": "atendimento@asccontabilidade.srv.br",
+        "right": 880,
+        "width": 274
+      },
+      {
+        "tag": "A",
+        "text": "@ascassessoriacontabil",
+        "right": 780,
+        "width": 174
+      }
+    ],
+    "title": "Sobre a ASC | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/sobre",
+    "video": null
+  },
+  {
+    "width": 768,
+    "route": "/servicos",
+    "scrollWidth": 880,
+    "overflow": [
+      {
+        "tag": "A",
+        "text": "atendimento@asccontabilidade.srv.br",
+        "right": 880,
+        "width": 274
+      },
+      {
+        "tag": "A",
+        "text": "@ascassessoriacontabil",
+        "right": 780,
+        "width": 174
+      }
+    ],
+    "title": "Serviços Contábeis | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/servicos",
+    "video": null
+  },
+  {
+    "width": 768,
+    "route": "/clientes",
+    "scrollWidth": 880,
+    "overflow": [
+      {
+        "tag": "A",
+        "text": "atendimento@asccontabilidade.srv.br",
+        "right": 880,
+        "width": 274
+      },
+      {
+        "tag": "A",
+        "text": "@ascassessoriacontabil",
+        "right": 780,
+        "width": 174
+      }
+    ],
+    "title": "Clientes | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/clientes",
+    "video": null
+  },
+  {
+    "width": 768,
+    "route": "/contato",
+    "scrollWidth": 880,
+    "overflow": [
+      {
+        "tag": "LABEL",
+        "text": "Website",
+        "right": -9940,
+        "width": 59
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "right": -9824,
+        "width": 175
+      },
+      {
+        "tag": "A",
+        "text": "atendimento@asccontabilidade.srv.br",
+        "right": 880,
+        "width": 274
+      },
+      {
+        "tag": "A",
+        "text": "@ascassessoriacontabil",
+        "right": 780,
+        "width": 174
+      }
+    ],
+    "title": "Contato | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/contato",
+    "video": null
+  },
+  {
+    "width": 768,
+    "route": "/politica-privacidade",
+    "scrollWidth": 880,
+    "overflow": [
+      {
+        "tag": "A",
+        "text": "atendimento@asccontabilidade.srv.br",
+        "right": 880,
+        "width": 274
+      },
+      {
+        "tag": "A",
+        "text": "@ascassessoriacontabil",
+        "right": 780,
+        "width": 174
+      }
+    ],
+    "title": "Política de Privacidade | ASC Assessoria Contábil",
+    "h1": 1,
+    "ogImage": "https://asc.srv.br/logo-horizontal-preto.png",
+    "canonical": "https://asc.srv.br/politica-privacidade",
+    "video": null
+  },
+  {
+    "width": 768,
+    "route": "/termos-uso",
+    "scrollWidth": 880,
+    "overflow": [
+      {
+        "tag": "A",
+        "text": "atendimento@asccontabilidade.srv.br",
+        "right": 880,
+        "width": 274
+      },
+      {
+        "tag": "A",
+        "text": "@ascassessoriacontabil",
+        "right": 780,
+        "width": 174
+      }
+    ],
+    "title": "Termos de Uso | ASC Assessoria Contábil",
+    "h1": 1,
+    "ogImage": "https://asc.srv.br/logo-horizontal-preto.png",
+    "canonical": "https://asc.srv.br/termos-uso",
+    "video": null
+  },
+  {
+    "width": 1920,
+    "route": "/",
+    "scrollWidth": 1920,
+    "overflow": [
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 2016,
+        "width": 304
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 2016,
+        "width": 288
+      },
+      {
+        "tag": "IMG",
+        "text": "",
+        "right": 2000,
+        "width": 256
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 2320,
+        "width": 304
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 2320,
+        "width": 288
+      },
+      {
+        "tag": "IMG",
+        "text": "",
+        "right": 2304,
+        "width": 256
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 2624,
+        "width": 304
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 2624,
+        "width": 288
+      }
+    ],
+    "title": "ASC Assessoria Contábil - Desde 2014",
+    "h1": 1,
+    "ogImage": "https://asc.srv.br/logo-horizontal-preto.png",
+    "canonical": "https://asc.srv.br/",
+    "video": {
+      "width": 1920,
+      "height": 1080,
+      "paused": false
+    }
+  },
+  {
+    "width": 1920,
+    "route": "/sobre",
+    "scrollWidth": 1920,
+    "overflow": [],
+    "title": "Sobre a ASC | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/sobre",
+    "video": null
+  },
+  {
+    "width": 1920,
+    "route": "/servicos",
+    "scrollWidth": 1920,
+    "overflow": [],
+    "title": "Serviços Contábeis | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/servicos",
+    "video": null
+  },
+  {
+    "width": 1920,
+    "route": "/clientes",
+    "scrollWidth": 1920,
+    "overflow": [],
+    "title": "Clientes | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/clientes",
+    "video": null
+  },
+  {
+    "width": 1920,
+    "route": "/contato",
+    "scrollWidth": 1920,
+    "overflow": [
+      {
+        "tag": "LABEL",
+        "text": "Website",
+        "right": -9748,
+        "width": 59
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "right": -9632,
+        "width": 175
+      }
+    ],
+    "title": "Contato | ASC Assessoria Contábil",
+    "h1": 1,
+    "canonical": "https://asc.srv.br/contato",
+    "video": null
+  },
+  {
+    "width": 1920,
+    "route": "/politica-privacidade",
+    "scrollWidth": 1920,
+    "overflow": [],
+    "title": "Política de Privacidade | ASC Assessoria Contábil",
+    "h1": 1,
+    "ogImage": "https://asc.srv.br/logo-horizontal-preto.png",
+    "canonical": "https://asc.srv.br/politica-privacidade",
+    "video": null
+  },
+  {
+    "width": 1920,
+    "route": "/termos-uso",
+    "scrollWidth": 1920,
+    "overflow": [],
+    "title": "Termos de Uso | ASC Assessoria Contábil",
+    "h1": 1,
+    "ogImage": "https://asc.srv.br/logo-horizontal-preto.png",
+    "canonical": "https://asc.srv.br/termos-uso",
+    "video": null
+  },
+  {
+    "width": 3840,
+    "route": "/",
+    "scrollWidth": 3840,
+    "overflow": [
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 3888,
+        "width": 304
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 3888,
+        "width": 288
+      },
+      {
+        "tag": "IMG",
+        "text": "",
+        "right": 3872,
+        "width": 256
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 4192,
+        "width": 304
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 4192,
+        "width": 288
+      },
+      {
+        "tag": "IMG",
+        "text": "",
+        "right": 4176,
+        "width": 256
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 4496,
+        "width": 304
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "right": 4496,
+        "width": 288
+      }
+    ],
+    "title": "ASC Assessoria Contábil - Desde 2014",
+    "h1": 1,
+    "ogImage": "https://asc.srv.br/logo-horizontal-preto.png",
+    "canonical": "https://asc.srv.br/",
+    "video": {
+      "width": 1920,
+      "height": 1080,
+      "paused": false
+    }
+  }
+]

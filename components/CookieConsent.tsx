@@ -73,7 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               Usamos cookies opcionais para entender e melhorar o site.{' '}
                 <Link
                   href="/politica-privacidade"
-                  className="font-medium text-gray-900 underline decoration-gray-300 underline-offset-4 transition-colors hover:decoration-[#00B74F] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B74F]"
+                  className="font-medium text-gray-900 underline decoration-gray-300 underline-offset-4 transition-colors hover:decoration-[#00B74F] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-strong"
                 >
                   Ver política
                 </Link>
@@ -83,14 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <button
                 type="button"
                 onClick={() => saveConsent('rejected')}
-                className="min-h-11 rounded-lg px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B74F]"
+                className="min-h-11 rounded-lg px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-strong"
               >
                 Recusar
               </button>
               <button
                 type="button"
                 onClick={() => saveConsent('accepted')}
-                className="min-h-11 rounded-lg bg-[#00B74F] px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#009f45] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B74F] focus-visible:ring-offset-2"
+                className="min-h-11 rounded-lg bg-brand-strong px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-strong focus-visible:ring-offset-2"
               >
                 Aceitar
               </button>

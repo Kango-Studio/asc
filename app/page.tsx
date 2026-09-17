@@ -54,8 +54,8 @@ export default function Home() {
 
 
   const linkBase = "transition-colors";
-  const linkActive = "text-[#00B74F] font-medium";
-  const linkInactive = "text-gray-700 hover:text-[#00B74F]";
+  const linkActive = "text-brand-strong font-medium";
+  const linkInactive = "text-gray-700 hover:text-brand-strong";
   const navLinkClass = (path: string) =>
     `${linkBase} ${pathname === path ? linkActive : linkInactive}`;
 
@@ -106,7 +106,7 @@ export default function Home() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           pathname === "/"
             ? isScrolled
-              ? "bg-white/95 shadow-lg"
+              ? "bg-white/95 shadow-lg backdrop-blur-md"
               : ""
             : "bg-white/95 shadow-lg"
         }`}
@@ -156,16 +156,16 @@ export default function Home() {
 
           <button
             type="button"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-md md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B74F]"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-md md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-strong"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={isMenuOpen}
             aria-controls="home-mobile-navigation"
           >
             {isMenuOpen ? (
-              <X className="text-[#00B74F]" />
+              <X className="text-brand-strong" />
             ) : (
-              <Menu className="text-[#00B74F]" />
+              <Menu className="text-brand-strong" />
             )}
           </button>
         </nav>
@@ -246,14 +246,14 @@ export default function Home() {
           >
             <motion.div variants={fadeInUp} className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Sobre <span className="text-[#00B74F]">Nós</span>
+                Sobre <span className="text-brand-strong">Nós</span>
               </h2>
-              <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full" />
+              <div className="w-24 h-1 bg-brand-strong mx-auto rounded-full" />
             </motion.div>
 
             <motion.div
               variants={fadeInUp}
-              className="bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-3xl shadow-2xl p-8 md:p-16 text-white text-center relative overflow-hidden"
+              className="bg-gradient-to-br from-brand-strong to-brand-deep rounded-3xl shadow-2xl p-8 md:p-16 text-white text-center relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 -translate-x-1/2" />
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full translate-y-1/2 translate-x-1/2" />
@@ -275,7 +275,7 @@ export default function Home() {
                 <div className="mt-6">
                   <Button
                     asChild
-                    className="bg-white text-[#00B74F] hover:bg-white/90"
+                    className="bg-white text-brand-strong hover:bg-white/90"
                   >
                     <Link href="https://wa.me/555136671096">Saiba mais</Link>
                   </Button>
@@ -296,9 +296,9 @@ export default function Home() {
           >
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Nossos <span className="text-[#00B74F]">Serviços</span>
+                Nossos <span className="text-brand-strong">Serviços</span>
               </h2>
-              <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-6" />
+              <div className="w-24 h-1 bg-brand-strong mx-auto rounded-full mb-6" />
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 Soluções completas em contabilidade para sua empresa crescer com
                 segurança
@@ -314,7 +314,7 @@ export default function Home() {
                   className="bg-gradient-to-br from-white to-[#00B74F]/5 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 relative group"
                 >
                   <div className="absolute top-0 right-0 w-20 h-20 bg-pink-200/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <service.icon className="w-16 h-16 text-[#00B74F] mb-4 group-hover:scale-110 transition-transform" />
+                  <service.icon className="w-16 h-16 text-brand-strong mb-4 group-hover:scale-110 transition-transform" />
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {service.title}
                   </h3>
@@ -327,7 +327,7 @@ export default function Home() {
               variants={fadeInUp}
               className="mt-10 flex justify-center"
             >
-              <Button asChild className="bg-[#00B74F] hover:bg-[#00A376]">
+              <Button asChild className="bg-brand-strong hover:bg-brand-hover">
                 <Link href="/servicos">Ver mais</Link>
               </Button>
             </motion.div>

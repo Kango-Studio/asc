@@ -132,7 +132,7 @@ export default function NotFound() {
             className="mb-12"
           >
             <motion.h1
-              className="text-6xl sm:text-7xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#00B74F] to-[#00A376]"
+              className="text-6xl sm:text-7xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-strong to-brand-deep"
               animate={{
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
@@ -159,14 +159,14 @@ export default function NotFound() {
               animate="animate"
               className="inline-block"
             >
-              <AlertTriangle className="w-16 h-16 sm:w-20 sm:h-20 text-[#00B74F] mx-auto" />
+              <AlertTriangle className="w-16 h-16 sm:w-20 sm:h-20 text-brand-strong mx-auto" />
             </motion.div>
           </motion.div>
 
           {/* Error Message */}
           <motion.div variants={fadeInUp} className="mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Página não <span className="text-[#00B74F]">encontrada</span>
+              Página não <span className="text-brand-strong">encontrada</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Ops! Parece que a página que você está procurando não existe ou foi movida.
@@ -181,19 +181,19 @@ export default function NotFound() {
               </h3>
               <ul className="text-left space-y-4 text-gray-600">
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-[#00B74F] rounded-full flex-shrink-0" />
+                  <div className="w-2 h-2 bg-brand-strong rounded-full flex-shrink-0" />
                   Verificar se o endereço foi digitado corretamente
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-[#00B74F] rounded-full flex-shrink-0" />
+                  <div className="w-2 h-2 bg-brand-strong rounded-full flex-shrink-0" />
                   Voltar à página anterior
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-[#00B74F] rounded-full flex-shrink-0" />
+                  <div className="w-2 h-2 bg-brand-strong rounded-full flex-shrink-0" />
                   Ir para a página inicial
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-[#00B74F] rounded-full flex-shrink-0" />
+                  <div className="w-2 h-2 bg-brand-strong rounded-full flex-shrink-0" />
                   Entrar em contato conosco
                 </li>
               </ul>
@@ -209,7 +209,7 @@ export default function NotFound() {
               onClick={handleGoBack}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="group flex items-center gap-3 bg-[#00B74F] text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="group flex items-center gap-3 bg-brand-strong text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
               Voltar
@@ -219,7 +219,7 @@ export default function NotFound() {
               onClick={() => router.push('/')}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="group flex items-center gap-3 bg-white text-[#00B74F] border-2 border-[#00B74F] px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#00B74F] hover:text-white"
+              className="group flex items-center gap-3 bg-white text-brand-strong border-2 border-[#00B74F] px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-strong hover:text-white"
             >
               <Home className="w-5 h-5 transition-transform group-hover:scale-110" />
               Página Inicial
@@ -231,7 +231,7 @@ export default function NotFound() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="group flex items-center gap-3 bg-gradient-to-r from-[#00B74F] to-[#00A376] text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="group flex items-center gap-3 bg-gradient-to-r from-brand-strong to-brand-deep text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <FaWhatsapp className="w-5 h-5 transition-transform group-hover:rotate-12" />
               WhatsApp

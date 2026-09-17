@@ -179,17 +179,14 @@ export default function Contato() {
       const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
       window.localStorage.setItem('asc-contact-last-submission', String(Date.now()));
 
-      const whatsappWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-      if (!whatsappWindow) window.location.assign(whatsappUrl);
+      // Navigate once; noopener windows return null even when opening succeeds.
+      window.location.assign(whatsappUrl);
 
       setSubmitStatus({
         type: 'success',
-        message: 'WhatsApp aberto com sua mensagem. Revise o texto e toque em enviar para concluir.'
+        message: 'Continue no WhatsApp: revise o texto e toque em enviar para concluir.'
       });
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-      setWebsite('');
-      setErrors({});
-      formStartedAt.current = Date.now();
+      // Keep the draft if the visitor returns or the external app does not open.
     } catch {
       setSubmitStatus({
         type: 'error',
@@ -250,9 +247,9 @@ export default function Contato() {
                 <Image src="/logo-padrao.png" alt="ASC Logo" width={80} height={80} className="mx-auto" />
               </Link>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                Entre em <span className="text-[#00B74F]">Contato</span>
+                Entre em <span className="text-brand-strong">Contato</span>
               </h1>
-              <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-6" />
+              <div className="w-24 h-1 bg-brand-strong mx-auto rounded-full mb-6" />
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Estamos prontos para atender você e sua empresa.
               </p>
@@ -424,7 +421,7 @@ export default function Contato() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-[#00B74F] hover:bg-[#00A376] text-white text-lg py-6 group disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-brand-strong hover:bg-brand-hover text-white text-lg py-6 group disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? 'Abrindo WhatsApp...' : 'Continuar no WhatsApp'}
                       {!isSubmitting && <Send className="ml-2 group-hover:translate-x-1 transition-transform" />}
@@ -434,7 +431,7 @@ export default function Contato() {
               </motion.div>
 
               <motion.div variants={fadeInUp} className="space-y-6">
-                <div className="bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-3xl p-8 text-white relative overflow-hidden mb-6">
+                <div className="bg-gradient-to-br from-brand-strong to-brand-deep rounded-3xl p-8 text-white relative overflow-hidden mb-6">
                   <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
                   <div className="relative z-10">
                     <FaWhatsapp className="w-12 h-12 mb-4" />
@@ -445,7 +442,7 @@ export default function Contato() {
                     <Button
                       asChild
                       size="lg"
-                      className="bg-white text-[#00B74F] hover:bg-gray-100 w-full"
+                      className="bg-white text-brand-strong hover:bg-gray-100 w-full"
                     >
                       <a href="https://wa.me/555136671096" target="_blank" rel="noopener noreferrer">
                         <FaWhatsapp className="mr-2" />
@@ -463,7 +460,7 @@ export default function Contato() {
                     className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-br from-brand-strong to-brand-deep rounded-full flex items-center justify-center flex-shrink-0">
                         <info.icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="flex-1">
@@ -473,7 +470,7 @@ export default function Contato() {
                             href={info.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[#00B74F] hover:underline block"
+                            className="text-brand-strong hover:underline block"
                           >
                             {info.content}
                           </a>
@@ -484,7 +481,7 @@ export default function Contato() {
                           info.link ? (
                             <a
                               href="tel:+5551980111096"
-                              className="text-[#00B74F] hover:underline block"
+                              className="text-brand-strong hover:underline block"
                             >
                               {info.content2}
                             </a>
