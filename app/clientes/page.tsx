@@ -51,9 +51,9 @@ export default function Clientes() {
                 />
               </Link>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                Nossos <span className="text-[#00B74F]">Clientes</span>
+                Nossos <span className="text-brand-strong">Clientes</span>
               </h1>
-              <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-6" />
+              <div className="w-24 h-1 bg-brand-strong mx-auto rounded-full mb-6" />
               <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
                 Empresas que confiam em nosso trabalho e crescem conosco.
               </p>

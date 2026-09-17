@@ -20,6 +20,12 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        brand: {
+          DEFAULT: '#00B74F',
+          strong: '#00B74F',
+          hover: '#00A376',
+          deep: '#00A376',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

@@ -1,229 +1,22 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   fadeInUp,
   staggerContainer,
   scaleIn,
 } from "@/lib/animations";
-import {
-  Building2,
-  FileText,
-  Users,
-  Calculator,
-  FileCheck,
-  Scale,
-  CreditCard,
-  Menu,
-  X,
-} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Navigation from "@/components/Navigation";
 import { ClientsFeedback } from "@/components/screens/home/clients-feedback";
-import CampaignBadge from "@/components/CampaignBadge";
 import { HeroVideo } from "@/components/screens/home/hero-video";
-
-
+import { services } from "@/constants/services";
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
-  const { scrollY } = useScroll();
-  const headerBackground = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.95)"]
-  );
-  const headerShadow = useTransform(
-    scrollY,
-    [0, 100],
-    ["0 0 0px rgba(0, 0, 0, 0)", "0 4px 20px rgba(0, 0, 0, 0.1)"]
-  );
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-
-  const linkBase = "transition-colors";
-  const linkActive = "text-[#00B74F] font-medium";
-  const linkInactive = "text-gray-700 hover:text-[#00B74F]";
-  const navLinkClass = (path: string) =>
-    `${linkBase} ${pathname === path ? linkActive : linkInactive}`;
-
-  const services = [
-    {
-      icon: Building2,
-      title: "Abertura de Empresas",
-      description:
-        "Processo completo e desburocratizado para abrir sua empresa",
-    },
-    {
-      icon: FileText,
-      title: "Departamento Fiscal",
-      description: "Gestão fiscal completa e atualizada",
-    },
-    {
-      icon: Users,
-      title: "Departamento Pessoal",
-      description: "Administração completa de RH e folha de pagamento",
-    },
-    {
-      icon: Calculator,
-      title: "Departamento Contábil",
-      description: "Contabilidade precisa e transparente",
-    },
-    {
-      icon: FileCheck,
-      title: "Departamento Societário",
-      description: "Gestão societária e alterações contratuais",
-    },
-    {
-      icon: Scale,
-      title: "Assessoria Jurídica",
-      description: "Suporte jurídico especializado",
-    },
-    {
-      icon: CreditCard,
-      title: "Certificado Digital",
-      description: "Emissão e renovação de certificados digitais",
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      {/* <HolidayModal /> */}
+      <Navigation />
 
-      <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          pathname === "/"
-            ? isScrolled
-              ? "bg-white/95 shadow-lg"
-              : ""
-            : "bg-white/95 shadow-lg"
-        }`}
-        style={{
-          backgroundColor:
-            pathname === "/" ? headerBackground : "rgba(255, 255, 255, 0.95)",
-          boxShadow:
-            pathname === "/" ? headerShadow : "0 4px 20px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <nav aria-label="Navegação principal" className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="/" aria-label="ASC Assessoria Contábil — página inicial">
-              <Image
-                src="/logo-horizontal-preto.png"
-                alt=""
-                width={280}
-                height={280}
-                className="object-contain"
-              />
-            </Link>
-          </div>
-
-          <div className="hidden md:flex items-center gap-8">
-            <a
-              href="#home"
-              className={`${linkBase} ${
-                pathname === "/" ? linkActive : linkInactive
-              }`}
-            >
-              Início
-            </a>
-            <Link href="/sobre" className={navLinkClass("/sobre")}>
-              Sobre
-            </Link>
-            <Link href="/servicos" className={navLinkClass("/servicos")}>
-              Serviços
-            </Link>
-            <Link href="/clientes" className={navLinkClass("/clientes")}>
-              Clientes
-            </Link>
-            <Link href="/contato" className={navLinkClass("/contato")}>
-              Contato
-            </Link>
-            <CampaignBadge month="setembro" />
-          </div>
-
-          <button
-            type="button"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-md md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B74F]"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={isMenuOpen}
-            aria-controls="home-mobile-navigation"
-          >
-            {isMenuOpen ? (
-              <X className="text-[#00B74F]" />
-            ) : (
-              <Menu className="text-[#00B74F]" />
-            )}
-          </button>
-        </nav>
-
-        {isMenuOpen && (
-          <motion.div
-            id="home-mobile-navigation"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            className="md:hidden bg-white border-t"
-          >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              <a
-                href="#home"
-                className={`${linkBase} ${
-                  pathname === "/" ? linkActive : linkInactive
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Início
-              </a>
-              <Link
-                href="/sobre"
-                className={navLinkClass("/sobre")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Sobre
-              </Link>
-              <Link
-                href="/servicos"
-                className={navLinkClass("/servicos")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Serviços
-              </Link>
-              <Link
-                href="/clientes"
-                className={navLinkClass("/clientes")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Clientes
-              </Link>
-              <Link
-                href="/contato"
-                className={navLinkClass("/contato")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contato
-              </Link>
-              <div className="pt-1">
-                <CampaignBadge month="setembro" size="sm" />
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </motion.header>
-
-      {/* <Herotext /> */}
       <HeroVideo />
 
       <section
@@ -246,14 +39,14 @@ export default function Home() {
           >
             <motion.div variants={fadeInUp} className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Sobre <span className="text-[#00B74F]">Nós</span>
+                Sobre <span className="text-brand-strong">Nós</span>
               </h2>
-              <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full" />
+              <div className="w-24 h-1 bg-brand-strong mx-auto rounded-full" />
             </motion.div>
 
             <motion.div
               variants={fadeInUp}
-              className="bg-gradient-to-br from-[#00B74F] to-[#00A376] rounded-3xl shadow-2xl p-8 md:p-16 text-white text-center relative overflow-hidden"
+              className="bg-gradient-to-br from-brand-strong to-brand-deep rounded-3xl shadow-2xl p-8 md:p-16 text-white text-center relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 -translate-x-1/2" />
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full translate-y-1/2 translate-x-1/2" />
@@ -275,7 +68,7 @@ export default function Home() {
                 <div className="mt-6">
                   <Button
                     asChild
-                    className="bg-white text-[#00B74F] hover:bg-white/90"
+                    className="bg-white text-brand-strong hover:bg-white/90"
                   >
                     <Link href="https://wa.me/555136671096">Saiba mais</Link>
                   </Button>
@@ -296,9 +89,9 @@ export default function Home() {
           >
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Nossos <span className="text-[#00B74F]">Serviços</span>
+                Nossos <span className="text-brand-strong">Serviços</span>
               </h2>
-              <div className="w-24 h-1 bg-[#00B74F] mx-auto rounded-full mb-6" />
+              <div className="w-24 h-1 bg-brand-strong mx-auto rounded-full mb-6" />
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 Soluções completas em contabilidade para sua empresa crescer com
                 segurança
@@ -314,7 +107,7 @@ export default function Home() {
                   className="bg-gradient-to-br from-white to-[#00B74F]/5 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 relative group"
                 >
                   <div className="absolute top-0 right-0 w-20 h-20 bg-pink-200/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <service.icon className="w-16 h-16 text-[#00B74F] mb-4 group-hover:scale-110 transition-transform" />
+                  <service.icon className="w-16 h-16 text-brand-strong mb-4 group-hover:scale-110 transition-transform" />
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {service.title}
                   </h3>
@@ -327,7 +120,7 @@ export default function Home() {
               variants={fadeInUp}
               className="mt-10 flex justify-center"
             >
-              <Button asChild className="bg-[#00B74F] hover:bg-[#00A376]">
+              <Button asChild className="bg-brand-strong hover:bg-brand-hover">
                 <Link href="/servicos">Ver mais</Link>
               </Button>
             </motion.div>

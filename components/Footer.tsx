@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0f1115] text-white">
       <div className="container mx-auto px-4 py-14">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-4 [&>div]:min-w-0">
           {/* Brand */}
           <div>
             <div className="mb-4 flex items-center gap-3">
@@ -56,11 +56,11 @@ export default function Footer() {
           <div>
             <h4 className="mb-4 text-lg font-semibold text-[#9AE6B4]">Contato</h4>
             <ul className="space-y-3 text-gray-300">
-              <li className="flex items-center gap-2"><FaWhatsapp className="h-5 w-5 text-[#9AE6B4]" /> (51) 3667-1096</li>
-              <li className="flex items-center gap-2"><Phone className="h-5 w-5 text-[#9AE6B4]" /> (51) 98011-1096</li>
-              <li className="flex items-center gap-2"><Mail className="h-5 w-5 text-[#9AE6B4]" /> <a href="mailto:atendimento@asccontabilidade.srv.br" className="hover:text-white">atendimento@asccontabilidade.srv.br</a></li>
-              <li className="flex items-center gap-2"><Clock className="h-5 w-5 text-[#9AE6B4]" /> Seg–Sex: 8h–12h | 13h30–18h</li>
-              <li className="flex items-center gap-2"><Instagram className="h-5 w-5 text-[#9AE6B4]" /> <a href="https://instagram.com/ascassessoriacontabil" target="_blank" rel="noopener noreferrer" className="hover:text-white">@ascassessoriacontabil</a></li>
+              <li className="flex items-center gap-2"><FaWhatsapp className="h-5 w-5 shrink-0 text-[#9AE6B4]" /> (51) 3667-1096</li>
+              <li className="flex items-center gap-2"><Phone className="h-5 w-5 shrink-0 text-[#9AE6B4]" /> (51) 98011-1096</li>
+              <li className="flex items-center gap-2"><Mail className="h-5 w-5 shrink-0 text-[#9AE6B4]" /> <a href="mailto:atendimento@asccontabilidade.srv.br" className="min-w-0 [overflow-wrap:anywhere] hover:text-white">atendimento@asccontabilidade.srv.br</a></li>
+              <li className="flex items-center gap-2"><Clock className="h-5 w-5 shrink-0 text-[#9AE6B4]" /> Seg–Sex: 8h–12h | 13h30–18h</li>
+              <li className="flex items-center gap-2"><Instagram className="h-5 w-5 shrink-0 text-[#9AE6B4]" /> <a href="https://instagram.com/ascassessoriacontabil" target="_blank" rel="noopener noreferrer" className="min-w-0 [overflow-wrap:anywhere] hover:text-white">@ascassessoriacontabil</a></li>
             </ul>
           </div>
         </div>
