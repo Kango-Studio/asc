@@ -22,17 +22,16 @@ export const ClientsFeedback = ({ isClientPage = true }: ClientsFeedbackProps ) 
     useState<CarouselApi | null>(null);
 
   const reducedMotion = useReducedMotionPreference();
-  const [isPaused, setIsPaused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [hasFocus, setHasFocus] = useState(false);
 
   useEffect(() => {
-    if (!clientsCarouselApi || reducedMotion || isPaused || isHovered || hasFocus) return;
+    if (!clientsCarouselApi || reducedMotion || isHovered || hasFocus) return;
     const id = setInterval(() => {
       if (!document.hidden) clientsCarouselApi.scrollNext();
     }, 2500);
     return () => clearInterval(id);
-  }, [clientsCarouselApi, reducedMotion, isPaused, isHovered, hasFocus]);
+  }, [clientsCarouselApi, reducedMotion, isHovered, hasFocus]);
 
   return (
     <>
@@ -73,7 +72,7 @@ export const ClientsFeedback = ({ isClientPage = true }: ClientsFeedbackProps ) 
                   setApi={setClientsCarouselApi}
                   className="relative pb-6"
                 >
-                  <CarouselContent className="pb-2" onPointerDown={() => setIsPaused(true)}>
+                  <CarouselContent className="pb-2">
                     {clients.map((client, index) => (
                       <CarouselItem
                         key={index}
@@ -103,7 +102,7 @@ export const ClientsFeedback = ({ isClientPage = true }: ClientsFeedbackProps ) 
                     className="min-h-11 min-w-11"
                     aria-label="Clientes anteriores"
                     aria-controls="clients-carousel"
-                    onClick={() => { setIsPaused(true); clientsCarouselApi?.scrollPrev(reducedMotion); }}
+                    onClick={() => clientsCarouselApi?.scrollPrev(reducedMotion)}
                   >
                     <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                   </Button>
@@ -113,7 +112,7 @@ export const ClientsFeedback = ({ isClientPage = true }: ClientsFeedbackProps ) 
                     className="min-h-11 min-w-11"
                     aria-label="Próximos clientes"
                     aria-controls="clients-carousel"
-                    onClick={() => { setIsPaused(true); clientsCarouselApi?.scrollNext(reducedMotion); }}
+                    onClick={() => clientsCarouselApi?.scrollNext(reducedMotion)}
                   >
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
@@ -123,18 +122,6 @@ export const ClientsFeedback = ({ isClientPage = true }: ClientsFeedbackProps ) 
           </div>
         </section>
       }
-      {/* <motion.div variants={fadeInUp} className="mb-20">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-4">
-          {title}
-          <span className="text-brand-strong"> {titleSuffix}</span>
-        </h2>
-        <div className="w-24 h-1 bg-brand-strong mx-auto rounded-full mb-12" />
-
-        <div className="w-full mx-auto">
-          <StaggerTestimonials /> 
-        </div>
-      </motion.div> */}
-
       <motion.div variants={fadeInUp} className="mb-16">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-12">
           Por que escolher a <span className="text-brand-strong">ASC</span>

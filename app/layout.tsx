@@ -91,6 +91,9 @@ export default function RootLayout({
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: 'Avenida Padre Rizzieri Delai, 705, sala 03, Centro',
+                addressLocality: 'Três Cachoeiras',
+                addressRegion: 'RS',
+                postalCode: '95580-000',
                 addressCountry: 'BR',
               },
               sameAs: [
