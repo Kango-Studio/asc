@@ -15,21 +15,61 @@ export const HeroVideo = () => {
     if (!video) return;
 
     let active = true;
+    let playPending = false;
+    let retryFrame = 0;
     video.muted = true;
     video.defaultMuted = true;
-    video.src = window.matchMedia("(max-width: 767px)").matches
+    video.playsInline = true;
+    const source = window.matchMedia("(max-width: 767px)").matches
       ? "/videos/mobile-web.mp4"
       : "/videos/site-web.mp4";
-    video.load();
-    void video.play().catch(() => {
-      if (active) setStatus("error");
-    });
+
+    // Older browsers may ignore media queries on video sources.
+    if (video.currentSrc && !video.currentSrc.endsWith(source)) {
+      video.src = source;
+      video.load();
+    }
+
+    const tryPlay = () => {
+      if (!active || playPending || !video.paused || document.hidden) return;
+      playPending = true;
+      video.muted = true;
+      void video.play().then(() => {
+        if (active) delete video.dataset.autoplayError;
+      }).catch((error: unknown) => {
+        if (!active) return;
+        const name = error instanceof Error ? error.name : "UnknownError";
+        video.dataset.autoplayError = name;
+        // Loading a source can interrupt an outstanding play request.
+        if (name === "AbortError") {
+          retryFrame = requestAnimationFrame(tryPlay);
+        } else {
+          console.warn("Hero video autoplay failed:", error);
+        }
+      }).finally(() => {
+        playPending = false;
+      });
+    };
+
+    video.addEventListener("canplay", tryPlay);
+    video.addEventListener("loadeddata", tryPlay);
+    document.addEventListener("visibilitychange", tryPlay);
+    window.addEventListener("pageshow", tryPlay);
+    document.addEventListener("touchend", tryPlay, { passive: true });
+    document.addEventListener("click", tryPlay);
+    tryPlay();
 
     return () => {
       active = false;
-      video.pause();
-      video.removeAttribute("src");
-      video.load();
+      cancelAnimationFrame(retryFrame);
+      video.removeEventListener("canplay", tryPlay);
+      video.removeEventListener("loadeddata", tryPlay);
+      document.removeEventListener("visibilitychange", tryPlay);
+      window.removeEventListener("pageshow", tryPlay);
+      document.removeEventListener("touchend", tryPlay);
+      document.removeEventListener("click", tryPlay);
+      // React Strict Mode runs cleanup during initial mounting in development.
+      // Pausing here interrupts native autoplay, including on the network URL.
     };
   }, []);
 
@@ -82,19 +122,22 @@ export const HeroVideo = () => {
       <video
         id="hero-presentation"
         ref={videoRef}
-        className={`hero-video absolute inset-0 z-20 block h-full w-full object-cover object-center transition-opacity duration-700 motion-reduce:transition-none ${
-          status === "ready" ? "opacity-100" : "pointer-events-none opacity-0"
+        className={`hero-video pointer-events-none absolute inset-0 z-20 block h-full w-full object-cover object-center ${
+          status === "error" ? "invisible" : ""
         }`}
         autoPlay
         loop
         muted
         playsInline
+        controls={false}
         preload="auto"
         onPlaying={() => setStatus("ready")}
-        onWaiting={() => setStatus("loading")}
         onError={() => setStatus("error")}
         aria-hidden="true"
-      />
+      >
+        <source src="/videos/mobile-web.mp4" media="(max-width: 767px)" type="video/mp4" />
+        <source src="/videos/site-web.mp4" type="video/mp4" />
+      </video>
     </section>
   );
 };
