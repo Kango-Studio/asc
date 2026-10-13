@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Phone, Mail, Clock, Instagram } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
+import CampaignBadge from "./CampaignBadge";
 
 export default function Footer() {
   return (
@@ -25,6 +26,7 @@ export default function Footer() {
             <p className="max-w-sm text-sm text-gray-300">
               Desde 2014, simplificando a contabilidade com ética, transparência e compromisso com o seu crescimento.
             </p>
+            <CampaignBadge month="outubro" className="mt-4" />
           </div>
 
           {/* Navegação */}
