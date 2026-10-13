@@ -53,7 +53,7 @@ export default function Navigation() {
             <Link href="/servicos" className={navLinkClass('/servicos')} aria-current={currentPage('/servicos')}>Serviços</Link>
             <Link href="/clientes" className={navLinkClass('/clientes')} aria-current={currentPage('/clientes')}>Clientes</Link>
             <Link href="/contato" className={navLinkClass('/contato')} aria-current={currentPage('/contato')}>Contato</Link>
-            <CampaignBadge month="setembro" />
+            <CampaignBadge month="outubro" />
           </div>
 
           <button
@@ -82,7 +82,7 @@ export default function Navigation() {
               <Link href="/clientes" className={navLinkClass('/clientes')} onClick={() => setIsMenuOpen(false)}>Clientes</Link>
               <Link href="/contato" className={navLinkClass('/contato')} onClick={() => setIsMenuOpen(false)}>Contato</Link>
               <div className="pt-1">
-                <CampaignBadge month="setembro" size="sm" />
+                <CampaignBadge month="outubro" size="sm" />
               </div>
             </div>
           </motion.div>
