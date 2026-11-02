@@ -26,7 +26,7 @@ export default function Footer() {
             <p className="max-w-sm text-sm text-gray-300">
               Desde 2014, simplificando a contabilidade com ética, transparência e compromisso com o seu crescimento.
             </p>
-            <CampaignBadge month="outubro" className="mt-4" />
+            <CampaignBadge month="novembro" className="mt-4" />
           </div>
 
           {/* Navegação */}
